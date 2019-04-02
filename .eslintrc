@@ -1,0 +1,78 @@
+{
+    "extends": "airbnb",
+    "globals": {
+      "__DEV__": false,
+      "navigator": false
+    },
+    "parser": "babel-eslint",
+    "plugins": [
+      "react",
+      "react-native"
+    ],
+    "rules": {
+      "react/jsx-wrap-multilines": "off",
+      "operator-linebreak": "off",
+      "class-methods-use-this": "off",
+      "no-plusplus": "off",
+      "semi": [
+        "error",
+        "never"
+      ],
+      "comma-dangle": [
+        "error",
+        "never"
+      ],
+      "indent": [
+        "error",
+        4,
+        {
+          "SwitchCase": 1
+        }
+      ],
+      "global-require": "off",
+      "no-underscore-dangle": [
+        "warn",
+        {
+          "allowAfterThis": true
+        }
+      ],
+      "react/jsx-closing-bracket-location": [
+        1,
+        {
+          "selfClosing": "after-props",
+          "nonEmpty": "after-props"
+        }
+      ],
+      "react/jsx-curly-brace-presence": [
+        1,
+        {
+          "props": "always"
+        }
+      ],
+      "react/forbid-prop-types": 0,
+      "react/jsx-filename-extension": 0,
+      "react/no-array-index-key": 0,
+      "react/prop-types": [
+        "error",
+        {
+          "ignore": [
+            "theme",
+            "style",
+            "children"
+          ],
+          "skipUndeclared": true
+        }
+      ],
+      "react/require-default-props": 1,
+      "no-nested-ternary": "off",
+      "react-native/no-unused-styles": 2,
+      "react-native/split-platform-components": "off",
+      "react-native/no-inline-styles": 2,
+      "react-native/no-color-literals": 2,
+      "react/jsx-indent": 0,
+      "react/jsx-indent-props": 0,
+      "import/prefer-default-export": 1,
+      "no-unused-expressions": 1,
+      "camelcase": 0
+    }
+}
