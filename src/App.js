@@ -3,6 +3,7 @@ import {
     Text,
     View
 } from 'react-native'
+import SagresNavigator from './core/sagres/SagresNavigator'
 
 const styles = {
     container: {
@@ -17,9 +18,10 @@ const styles = {
 export default class App extends React.PureComponent {
     componentDidMount = () => {
         console.log('stuff just happened')
+        SagresNavigator.login('cookies', 'are_a_problem')
     }
 
-    render() {
+    render = () => {
         return (
             <View style={styles.container}>
                 <Text style={styles.welcome}>Welcome to UNES</Text>

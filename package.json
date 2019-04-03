@@ -7,23 +7,26 @@
     "test": "jest"
   },
   "dependencies": {
+    "axios": "^0.18.0",
+    "axios-cookiejar-support": "^0.4.2",
+    "eslint-plugin-react-native": "^3.2.1",
     "react": "16.8.3",
     "react-native": "0.59.3",
-    "eslint-plugin-react-native": "^3.2.1"
+    "react-native-cookies": "^3.3.0"
   },
   "devDependencies": {
     "@babel/core": "^7.4.0",
     "@babel/runtime": "^7.4.2",
-    "babel-jest": "^24.6.0",
-    "jest": "^24.6.0",
-    "metro-react-native-babel-preset": "^0.53.1",
-    "react-test-renderer": "16.8.3",
     "babel-eslint": "^8.2.6",
+    "babel-jest": "^24.6.0",
     "eslint": "^5.4.0",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-jsx-a11y": "^6.1.1",
-    "eslint-plugin-react": "^7.11.1"
+    "eslint-plugin-react": "^7.11.1",
+    "jest": "^24.6.0",
+    "metro-react-native-babel-preset": "^0.53.1",
+    "react-test-renderer": "16.8.3"
   },
   "jest": {
     "preset": "react-native"
