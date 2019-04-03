@@ -1,6 +1,7 @@
+import qs from 'querystring'
 import configuration from '../configuration'
 
-const useLoginForm = ({ username, password }) => ({
+const useLoginForm = ({ username, password }) => qs.stringify({
     ctl00$PageContent$LoginPanel$UserName: username,
     ctl00$PageContent$LoginPanel$Password: password,
     ctl00$PageContent$LoginPanel$LoginButton: 'Entrar',

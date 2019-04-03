@@ -1,5 +1,4 @@
 import axios from 'axios'
-import CookieManager from 'react-native-cookies'
 
 import useLoginForm from './forms'
 import configuration from '../configuration'
@@ -16,7 +15,9 @@ class SagresAPI {
                 // We are Google Chrome, or kind of it
                 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36',
                 // Mimics the base requests to Sagres
-                'Cache-Control': 'no-cache'
+                'Cache-Control': 'no-cache',
+                // It's url encoded params
+                'Content-Type': 'application/x-www-form-urlencoded'
             }
         })
 
