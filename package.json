@@ -13,6 +13,7 @@
     "querystring": "^0.2.0",
     "react": "16.8.3",
     "react-native": "0.59.3",
+    "react-native-cheerio": "^1.0.0-rc.4",
     "tough-cookie-no-native": "^2.4.0",
     "util": "^0.11.1"
   },

@@ -15,16 +15,26 @@ const styles = {
     }
 }
 
-export default class App extends React.PureComponent {
+export default class App extends React.Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            name: null
+        }
+    }
+
     componentDidMount = () => {
         console.log('stuff just happened')
-        SagresNavigator.login('cookies', 'problematics')
+        SagresNavigator.login('username', 'password').then((name) => {
+            this.setState({ name })
+        }).catch(error => console.log(error))
     }
 
     render = () => {
+        const { name } = this.state
         return (
             <View style={styles.container}>
-                <Text style={styles.welcome}>Welcome to UNES</Text>
+                <Text style={styles.welcome}>{`Welcome to UNES ${name || ''}`}</Text>
             </View>
         )
     }
