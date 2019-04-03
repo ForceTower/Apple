@@ -48,6 +48,20 @@
                ReferencedContainer = "container:Apple.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "D8AFADBC1BEE6F3F00A4592D"
+               BuildableName = "libReactNativeNavigation.a"
+               BlueprintName = "ReactNativeNavigation"
+               ReferencedContainer = "container:../node_modules/react-native-navigation/lib/ios/ReactNativeNavigation.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
