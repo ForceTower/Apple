@@ -31,10 +31,6 @@ class SagresAPI {
             console.log('going to', request.url)
             return request
         })
-        this.axios.interceptors.response.use((response) => {
-            console.log(response.data.location)
-            return response
-        })
     }
 
     login = ({ username, password }) => this.axios.post(

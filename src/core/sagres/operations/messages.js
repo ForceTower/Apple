@@ -1,13 +1,13 @@
 import SagresAPI from '../backend/index'
+import messageScrapper from '../scrappers'
 
 export default class Messages {
-    static perform = () => {
-        SagresAPI.messages().then((response) => {
-            console.log('It is complete! It\'s basically done now')
-            console.log(response)
-        }).catch((error) => {
-            console.log('The error has arived')
-            console.log(error)
-        })
+    static perform = async () => {
+        const response = await SagresAPI.messages()
+        const { data } = response
+        if (data) {
+            const messages = await messageScrapper(data)
+            console.log(messages)
+        }
     }
 }

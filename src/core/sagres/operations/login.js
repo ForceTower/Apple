@@ -6,7 +6,7 @@ export default class Login {
     static perform = async ({ username, password }) => {
         try {
             const response = await SagresAPI.login({ username, password })
-            const { status, data } = response
+            const { data } = response
             if (data) {
                 const $ = await cheerio.load(data)
                 const name = await $('.topo-info-login .usuario-nome').text()

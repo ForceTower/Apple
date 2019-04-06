@@ -23,11 +23,15 @@ export default class App extends React.Component {
         }
     }
 
-    componentDidMount = () => {
+    componentDidMount = async () => {
         console.log('stuff just happened')
-        SagresNavigator.login('username', 'password').then((name) => {
+        try {
+            const name = await SagresNavigator.login('username', 'password')
             this.setState({ name })
-        }).catch(error => console.log(error))
+            await SagresNavigator.messages()
+        } catch (error) {
+            console.log(error)
+        }
     }
 
     render = () => {
