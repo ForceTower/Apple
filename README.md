@@ -17,12 +17,12 @@ Algumas coisas já estão sendo pensadas e se você quiser contribuir com algo p
 
 ## Tarefas
 No momento eu estou transferindo o crawler de kotlin/java para javascript.
-[X] Login (a parte mais difícil)
-[X] Mensagens
-[ ] Horários
-[ ] Calendário
-[ ] Disciplinas
-[ ] Notas
-[ ] Download de Materiais
+- [X] Login (a parte mais difícil)
+- [X] Mensagens
+- [ ] Horários
+- [ ] Calendário
+- [ ] Disciplinas
+- [ ] Notas
+- [ ] Download de Materiais
 
 Se você se sentir confortável para desenvolver alguma tela (com seu proprio design) para alguma das tarefas que o crawler já está funcionando (como o fluxo de login e lista de mensagens) pode ficar à vontade, basta mandar o pull request :)
