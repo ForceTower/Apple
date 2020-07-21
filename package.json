@@ -8,7 +8,7 @@
     "android": "cd ./android && ./gradlew installDebug"
   },
   "dependencies": {
-    "axios": "^0.18.0",
+    "axios": "^0.18.1",
     "axios-cookiejar-support": "^0.4.2",
     "eslint-plugin-react-native": "^3.2.1",
     "querystring": "^0.2.0",
