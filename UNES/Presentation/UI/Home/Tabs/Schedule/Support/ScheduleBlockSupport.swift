@@ -55,7 +55,7 @@ class ScheduleBlockSupport {
         return result
     }
     
-    static func buildDisplayList(_ data: [Int16: [ProcessedClassLocation]]) -> [ProcessedClassLocation] {
+    static func buildDisplayList(_ data: [Int16: [ProcessedClassLocation]]) -> ([String: Int], [ProcessedClassLocation]) {
         var disciplineColors = [String: Int]()
         var colorIndex = 0
         var result = [ProcessedClassLocation]()
@@ -86,7 +86,7 @@ class ScheduleBlockSupport {
             }
         }
         
-        return result
+        return (disciplineColors, result)
     }
 }
 

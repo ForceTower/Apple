@@ -19,6 +19,9 @@ class ScheduleViewController: UIViewController {
         view.translatesAutoresizingMaskIntoConstraints = false
         view.contentInsetAdjustmentBehavior = .always
         view.register(ScheduleBlockViewCell.self, forCellWithReuseIdentifier: ScheduleBlockViewCell.identifier)
+        view.register(ScheduleDayViewCell.self, forCellWithReuseIdentifier: ScheduleDayViewCell.identifier)
+        view.register(ScheduleEmptyViewCell.self, forCellWithReuseIdentifier: ScheduleEmptyViewCell.identifier)
+        view.register(ScheduleTimeViewCell.self, forCellWithReuseIdentifier: ScheduleTimeViewCell.identifier)
         return view
     }()
     
@@ -79,7 +82,7 @@ class ScheduleViewController: UIViewController {
     private func setupConstraints() {
         NSLayoutConstraint.activate([
             scheduleBlockView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0),
-            scheduleBlockView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 24),
+            scheduleBlockView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 8),
             scheduleBlockView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -24),
         ])
     }
@@ -95,10 +98,42 @@ extension ScheduleViewController: UICollectionViewDelegate, UICollectionViewData
         let all = vm.built
         
         let item = all[indexPath.row]
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ScheduleBlockViewCell.identifier, for: indexPath) as! ScheduleBlockViewCell
-        if let item = item as? ElementSpace {
-            cell.bind(item.location, withColor: .blue)
+        switch(item) {
+        case is ElementSpace:
+            return bindBlockCell(collectionView, item: item as! ElementSpace, atIndex: indexPath)
+        case is EmptySpace:
+            return bindEmptyCell(collectionView, atIndex: indexPath)
+        case is DaySpace:
+            return bindDayCell(collectionView, item: item as! DaySpace, atIndex: indexPath)
+        case is TimeSpace:
+            return bindTimeCell(collectionView, item: item as! TimeSpace, atIndex: indexPath)
+        default:
+            fatalError("Failed to render schedule item \(item)")
         }
+    }
+    
+    private func bindBlockCell(_ collectionView: UICollectionView, item: ElementSpace, atIndex indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ScheduleBlockViewCell.identifier, for: indexPath) as! ScheduleBlockViewCell
+        let code = item.location.group?.clazz?.discipline?.code ?? ""
+        let colorIndex = vm.disciplineColors[code] ?? 0
+        let color = DisciplineColors.colors[colorIndex]
+        cell.bind(item.location, withColor: color)
+        return cell
+    }
+    
+    private func bindDayCell(_ collectionView: UICollectionView, item: DaySpace, atIndex indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ScheduleDayViewCell.identifier, for: indexPath) as! ScheduleDayViewCell
+        cell.bind(item)
+        return cell
+    }
+    
+    private func bindEmptyCell(_ collectionView: UICollectionView, atIndex indexPath: IndexPath) -> UICollectionViewCell {
+        return collectionView.dequeueReusableCell(withReuseIdentifier: ScheduleEmptyViewCell.identifier, for: indexPath) as! ScheduleEmptyViewCell
+    }
+    
+    private func bindTimeCell(_ collectionView: UICollectionView, item: TimeSpace, atIndex indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ScheduleTimeViewCell.identifier, for: indexPath) as! ScheduleTimeViewCell
+        cell.bind(item)
         return cell
     }
 }

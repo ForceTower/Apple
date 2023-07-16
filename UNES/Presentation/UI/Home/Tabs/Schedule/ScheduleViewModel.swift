@@ -11,6 +11,7 @@ class ScheduleViewModel {
     @Published private(set) var locations = [ClassLocationEntity]()
     @Published private(set) var schedule = [Int16: [ProcessedClassLocation]]()
     @Published private(set) var built = [ProcessedClassLocation]()
+    @Published private(set) var disciplineColors = [String: Int]()
     
     func fetchSchedule() {
         let context = UNESPersistenceController.shared.container.viewContext
@@ -18,6 +19,8 @@ class ScheduleViewModel {
         self.locations = locations
         
         schedule = ScheduleBlockSupport.createMap(locations)
-        built = ScheduleBlockSupport.buildDisplayList(schedule)
+        let res = ScheduleBlockSupport.buildDisplayList(schedule)
+        built = res.1
+        disciplineColors = res.0
     }
 }
