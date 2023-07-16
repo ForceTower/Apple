@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="21754" systemVersion="22F82" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="AccessEntity" representedClassName="AccessEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="password" attributeType="String"/>
+        <attribute name="username" attributeType="String"/>
+        <attribute name="valid" attributeType="Boolean" defaultValueString="YES" usesScalarValueType="YES"/>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="username"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
+    </entity>
+    <entity name="ClassEntity" representedClassName="ClassEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="disciplineId" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="finalScore" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="id" attributeType="String"/>
+        <attribute name="lastClass" optional="YES" attributeType="String"/>
+        <attribute name="missedClasses" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="nextClass" optional="YES" attributeType="String"/>
+        <attribute name="partialScore" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="scheduleOnly" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="semesterId" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="status" optional="YES" attributeType="String"/>
+        <relationship name="discipline" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DisciplineEntity" inverseName="classes" inverseEntity="DisciplineEntity"/>
+        <relationship name="grades" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="GradeEntity" inverseName="clazz" inverseEntity="GradeEntity"/>
+        <relationship name="groups" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ClassGroupEntity" inverseName="clazz" inverseEntity="ClassGroupEntity"/>
+        <relationship name="semester" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SemesterEntity" inverseName="classes" inverseEntity="SemesterEntity"/>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="semesterId"/>
+                <constraint value="disciplineId"/>
+            </uniquenessConstraint>
+            <uniquenessConstraint>
+                <constraint value="id"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
+    </entity>
+    <entity name="ClassGroupEntity" representedClassName="ClassGroupEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="classId" attributeType="String"/>
+        <attribute name="credits" attributeType="Integer 16" usesScalarValueType="YES"/>
+        <attribute name="draft" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="group" attributeType="String"/>
+        <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="ignored" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="teacher" optional="YES" attributeType="String"/>
+        <attribute name="teacherEmail" optional="YES" attributeType="String"/>
+        <attribute name="teacherId" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="clazz" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ClassEntity" inverseName="groups" inverseEntity="ClassEntity"/>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="classId"/>
+                <constraint value="group"/>
+            </uniquenessConstraint>
+            <uniquenessConstraint>
+                <constraint value="id"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
+    </entity>
+    <entity name="ClassLocationEntity" representedClassName="ClassLocationEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="campus" optional="YES" attributeType="String"/>
+        <attribute name="day" attributeType="String"/>
+        <attribute name="dayInt" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="endsAt" attributeType="String"/>
+        <attribute name="endsAtInt" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="groupId" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="hiddenOnSchedule" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="modulo" optional="YES" attributeType="String"/>
+        <attribute name="room" optional="YES" attributeType="String"/>
+        <attribute name="startsAt" attributeType="String"/>
+        <attribute name="startsAtInt" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="groupId"/>
+                <constraint value="day"/>
+                <constraint value="startsAt"/>
+                <constraint value="endsAt"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
+    </entity>
+    <entity name="CourseEntity" representedClassName="CourseEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="id" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="name" attributeType="String"/>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="id"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
+    </entity>
+    <entity name="DisciplineEntity" representedClassName="DisciplineEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="code" attributeType="String"/>
+        <attribute name="credits" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="department" optional="YES" attributeType="String"/>
+        <attribute name="id" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="name" attributeType="String"/>
+        <attribute name="program" optional="YES" attributeType="String"/>
+        <attribute name="shortText" optional="YES" attributeType="String"/>
+        <relationship name="classes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ClassEntity" inverseName="discipline" inverseEntity="ClassEntity"/>
+        <relationship name="semesters" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SemesterEntity" inverseName="disciplines" inverseEntity="SemesterEntity"/>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="id"/>
+            </uniquenessConstraint>
+            <uniquenessConstraint>
+                <constraint value="code"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
+    </entity>
+    <entity name="GradeEntity" representedClassName="GradeEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="classId" attributeType="String"/>
+        <attribute name="date" optional="YES" attributeType="String"/>
+        <attribute name="grade" optional="YES" attributeType="String"/>
+        <attribute name="grouping" attributeType="String"/>
+        <attribute name="groupingName" optional="YES" attributeType="String"/>
+        <attribute name="name" attributeType="String"/>
+        <attribute name="notified" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="clazz" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ClassEntity" inverseName="grades" inverseEntity="ClassEntity"/>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="name"/>
+                <constraint value="classId"/>
+                <constraint value="grouping"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
+    </entity>
+    <entity name="MessageEntity" representedClassName="MessageEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="attachmentLink" optional="YES" attributeType="String"/>
+        <attribute name="attachmentName" optional="YES" attributeType="String"/>
+        <attribute name="codeDiscipline" optional="YES" attributeType="String"/>
+        <attribute name="content" attributeType="String"/>
+        <attribute name="discipline" optional="YES" attributeType="String"/>
+        <attribute name="hashMessage" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="html" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="id" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="notified" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="processingTime" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="senderName" optional="YES" attributeType="String"/>
+        <attribute name="senderProfile" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="timestamp" attributeType="Date" usesScalarValueType="NO"/>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="hashMessage"/>
+            </uniquenessConstraint>
+            <uniquenessConstraint>
+                <constraint value="id"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
+    </entity>
+    <entity name="ProfileEntity" representedClassName="ProfileEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="calcScore" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="course" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="email" optional="YES" attributeType="String"/>
+        <attribute name="id" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="imageUrl" optional="YES" attributeType="String"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="score" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="id"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
+    </entity>
+    <entity name="SemesterEntity" representedClassName="SemesterEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="codename" attributeType="String"/>
+        <attribute name="end" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="id" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="name" attributeType="String"/>
+        <attribute name="start" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <relationship name="classes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ClassEntity" inverseName="semester" inverseEntity="ClassEntity"/>
+        <relationship name="disciplines" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="DisciplineEntity" inverseName="semesters" inverseEntity="DisciplineEntity"/>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="id"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
+    </entity>
+    <entity name="TeacherEntity" representedClassName="TeacherEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="department" optional="YES" attributeType="String"/>
+        <attribute name="email" optional="YES" attributeType="String"/>
+        <attribute name="id" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="name" attributeType="String"/>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="id"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
+    </entity>
+</model>

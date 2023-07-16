@@ -7,9 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6C4058DC2A638A99004F5174 /* Grade+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C4058DB2A638A99004F5174 /* Grade+Extensions.swift */; };
+		6C972EF62A63859D00D681CE /* GradeProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C972EF52A63859D00D681CE /* GradeProcessor.swift */; };
 		6CACE7B02A59FFBC001117A6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CACE7AF2A59FFBC001117A6 /* AppDelegate.swift */; };
 		6CACE7B22A59FFBC001117A6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CACE7B12A59FFBC001117A6 /* SceneDelegate.swift */; };
-		6CACE7BA2A59FFBC001117A6 /* UNES.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6CACE7B82A59FFBC001117A6 /* UNES.xcdatamodeld */; };
 		6CACE7BC2A59FFBD001117A6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6CACE7BB2A59FFBD001117A6 /* Assets.xcassets */; };
 		6CACE7BF2A59FFBD001117A6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6CACE7BD2A59FFBD001117A6 /* LaunchScreen.storyboard */; };
 		6CACE7CF2A5A0C1A001117A6 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CACE7CE2A5A0C1A001117A6 /* Coordinator.swift */; };
@@ -20,14 +21,38 @@
 		6CACE7DC2A5A3DFB001117A6 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CACE7DB2A5A3DFB001117A6 /* LoginViewController.swift */; };
 		6CBCCD852A5B5933004A984B /* AuthCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CBCCD842A5B5933004A984B /* AuthCoordinator.swift */; };
 		6CBCCD872A5B5A24004A984B /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CBCCD862A5B5A24004A984B /* LoginViewModel.swift */; };
-		6CBCCD8F2A5E05DE004A984B /* TestingGrounds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CBCCD8E2A5E05DE004A984B /* TestingGrounds.swift */; };
+		6CBCCD952A5E1FB4004A984B /* Arcadia in Frameworks */ = {isa = PBXBuildFile; productRef = 6CBCCD942A5E1FB4004A984B /* Arcadia */; };
+		6CBCCD9A2A5E3301004A984B /* LoggingInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CBCCD992A5E3301004A984B /* LoggingInViewController.swift */; };
+		6CBCCD9C2A5E3312004A984B /* LoggingInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CBCCD9B2A5E3312004A984B /* LoggingInViewModel.swift */; };
+		6CBCCD9F2A5E34CD004A984B /* RxBlocking in Frameworks */ = {isa = PBXBuildFile; productRef = 6CBCCD9E2A5E34CD004A984B /* RxBlocking */; };
+		6CBCCDA32A5E34CD004A984B /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 6CBCCDA22A5E34CD004A984B /* RxCocoa */; };
+		6CBCCDA72A5E34CD004A984B /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = 6CBCCDA62A5E34CD004A984B /* RxRelay */; };
+		6CBCCDAB2A5E34CD004A984B /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 6CBCCDAA2A5E34CD004A984B /* RxSwift */; };
+		6CBCCDB42A5F32F1004A984B /* LoginUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CBCCDB32A5F32F1004A984B /* LoginUseCase.swift */; };
+		6CBCCDB62A5F390C004A984B /* PortalAuthError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CBCCDB52A5F390C004A984B /* PortalAuthError.swift */; };
+		6CBCCDB92A5F3C13004A984B /* PortalAuthProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CBCCDB82A5F3C13004A984B /* PortalAuthProgress.swift */; };
+		6CBCCDBC2A5F6AA5004A984B /* Stream+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CBCCDBB2A5F6AA5004A984B /* Stream+Extensions.swift */; };
+		6CEA64932A60B254009F786E /* UNESPersistenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CEA64922A60B254009F786E /* UNESPersistenceController.swift */; };
+		6CEA64972A60B3C6009F786E /* UNESDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6CEA64952A60B3C6009F786E /* UNESDataModel.xcdatamodeld */; };
+		6CEA649F2A632792009F786E /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CEA649E2A632792009F786E /* DashboardViewController.swift */; };
+		6CEA64A12A6327BC009F786E /* ScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CEA64A02A6327BC009F786E /* ScheduleViewController.swift */; };
+		6CEA64A32A6327DB009F786E /* MessagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CEA64A22A6327DB009F786E /* MessagesViewController.swift */; };
+		6CEA64A62A632815009F786E /* HomeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CEA64A52A632815009F786E /* HomeCoordinator.swift */; };
+		6CEA64A92A633039009F786E /* MessageViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CEA64A82A633039009F786E /* MessageViewCell.swift */; };
+		6CEA64AD2A634C7C009F786E /* MessagesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CEA64AC2A634C7C009F786E /* MessagesViewModel.swift */; };
+		6CEA64AF2A6352E3009F786E /* MessageViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CEA64AE2A6352E3009F786E /* MessageViewLayout.swift */; };
+		6CEA64B32A636F79009F786E /* GradesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CEA64B22A636F79009F786E /* GradesViewController.swift */; };
+		6CEA64B62A63711C009F786E /* PersonProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CEA64B52A63711C009F786E /* PersonProcessor.swift */; };
+		6CEA64B82A6373BE009F786E /* SemesterProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CEA64B72A6373BE009F786E /* SemesterProcessor.swift */; };
+		6CEA64BA2A6375BD009F786E /* DisciplineProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CEA64B92A6375BD009F786E /* DisciplineProcessor.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6C4058DB2A638A99004F5174 /* Grade+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Grade+Extensions.swift"; sourceTree = "<group>"; };
+		6C972EF52A63859D00D681CE /* GradeProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradeProcessor.swift; sourceTree = "<group>"; };
 		6CACE7AC2A59FFBC001117A6 /* UNES.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UNES.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6CACE7AF2A59FFBC001117A6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6CACE7B12A59FFBC001117A6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		6CACE7B92A59FFBC001117A6 /* UNES.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = UNES.xcdatamodel; sourceTree = "<group>"; };
 		6CACE7BB2A59FFBD001117A6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6CACE7BE2A59FFBD001117A6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6CACE7C02A59FFBD001117A6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -39,7 +64,26 @@
 		6CACE7DB2A5A3DFB001117A6 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		6CBCCD842A5B5933004A984B /* AuthCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthCoordinator.swift; sourceTree = "<group>"; };
 		6CBCCD862A5B5A24004A984B /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
-		6CBCCD8E2A5E05DE004A984B /* TestingGrounds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestingGrounds.swift; sourceTree = "<group>"; };
+		6CBCCD902A5E1997004A984B /* Arcadia */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = Arcadia; path = ../Arcadia; sourceTree = "<group>"; };
+		6CBCCD992A5E3301004A984B /* LoggingInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggingInViewController.swift; sourceTree = "<group>"; };
+		6CBCCD9B2A5E3312004A984B /* LoggingInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggingInViewModel.swift; sourceTree = "<group>"; };
+		6CBCCDB32A5F32F1004A984B /* LoginUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginUseCase.swift; sourceTree = "<group>"; };
+		6CBCCDB52A5F390C004A984B /* PortalAuthError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortalAuthError.swift; sourceTree = "<group>"; };
+		6CBCCDB82A5F3C13004A984B /* PortalAuthProgress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortalAuthProgress.swift; sourceTree = "<group>"; };
+		6CBCCDBB2A5F6AA5004A984B /* Stream+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Stream+Extensions.swift"; sourceTree = "<group>"; };
+		6CEA64922A60B254009F786E /* UNESPersistenceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UNESPersistenceController.swift; sourceTree = "<group>"; };
+		6CEA64962A60B3C6009F786E /* UNESDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = UNESDataModel.xcdatamodel; sourceTree = "<group>"; };
+		6CEA649E2A632792009F786E /* DashboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
+		6CEA64A02A6327BC009F786E /* ScheduleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleViewController.swift; sourceTree = "<group>"; };
+		6CEA64A22A6327DB009F786E /* MessagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesViewController.swift; sourceTree = "<group>"; };
+		6CEA64A52A632815009F786E /* HomeCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCoordinator.swift; sourceTree = "<group>"; };
+		6CEA64A82A633039009F786E /* MessageViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageViewCell.swift; sourceTree = "<group>"; };
+		6CEA64AC2A634C7C009F786E /* MessagesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesViewModel.swift; sourceTree = "<group>"; };
+		6CEA64AE2A6352E3009F786E /* MessageViewLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageViewLayout.swift; sourceTree = "<group>"; };
+		6CEA64B22A636F79009F786E /* GradesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradesViewController.swift; sourceTree = "<group>"; };
+		6CEA64B52A63711C009F786E /* PersonProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonProcessor.swift; sourceTree = "<group>"; };
+		6CEA64B72A6373BE009F786E /* SemesterProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SemesterProcessor.swift; sourceTree = "<group>"; };
+		6CEA64B92A6375BD009F786E /* DisciplineProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisciplineProcessor.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,6 +91,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6CBCCDA72A5E34CD004A984B /* RxRelay in Frameworks */,
+				6CBCCD952A5E1FB4004A984B /* Arcadia in Frameworks */,
+				6CBCCDA32A5E34CD004A984B /* RxCocoa in Frameworks */,
+				6CBCCDAB2A5E34CD004A984B /* RxSwift in Frameworks */,
+				6CBCCD9F2A5E34CD004A984B /* RxBlocking in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -56,8 +105,10 @@
 		6CACE7A32A59FFBC001117A6 = {
 			isa = PBXGroup;
 			children = (
+				6CBCCD902A5E1997004A984B /* Arcadia */,
 				6CACE7AE2A59FFBC001117A6 /* UNES */,
 				6CACE7AD2A59FFBC001117A6 /* Products */,
+				6CBCCD932A5E1FB4004A984B /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -72,6 +123,7 @@
 		6CACE7AE2A59FFBC001117A6 /* UNES */ = {
 			isa = PBXGroup;
 			children = (
+				6CBCCDBA2A5F6A94004A984B /* Extensions */,
 				6CACE7D22A5A0D2B001117A6 /* DI */,
 				6CACE7C82A5A0B99001117A6 /* Presentation */,
 				6CACE7C72A5A0B94001117A6 /* Data */,
@@ -81,7 +133,6 @@
 				6CACE7BB2A59FFBD001117A6 /* Assets.xcassets */,
 				6CACE7BD2A59FFBD001117A6 /* LaunchScreen.storyboard */,
 				6CACE7C02A59FFBD001117A6 /* Info.plist */,
-				6CACE7B82A59FFBC001117A6 /* UNES.xcdatamodeld */,
 			);
 			path = UNES;
 			sourceTree = "<group>";
@@ -89,6 +140,8 @@
 		6CACE7C62A5A0B7F001117A6 /* Domain */ = {
 			isa = PBXGroup;
 			children = (
+				6CBCCDB72A5F3C06004A984B /* Model */,
+				6CBCCDB22A5F32E0004A984B /* UseCase */,
 			);
 			path = Domain;
 			sourceTree = "<group>";
@@ -96,6 +149,8 @@
 		6CACE7C72A5A0B94001117A6 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				6CEA64B42A637105009F786E /* Processor */,
+				6CEA64912A60B236009F786E /* Database */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -113,9 +168,9 @@
 		6CACE7CA2A5A0BB7001117A6 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				6CEA649B2A632713009F786E /* Home */,
 				6CACE7CB2A5A0BD0001117A6 /* Auth */,
 				6CACE7D02A5A0C5F001117A6 /* MainCoordinator.swift */,
-				6CBCCD8E2A5E05DE004A984B /* TestingGrounds.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -123,6 +178,7 @@
 		6CACE7CB2A5A0BD0001117A6 /* Auth */ = {
 			isa = PBXGroup;
 			children = (
+				6CBCCD982A5E32E4004A984B /* LoggingIn */,
 				6CACE7DA2A5A3DD9001117A6 /* Login */,
 				6CACE7D52A5A0DBB001117A6 /* Welcome */,
 				6CBCCD842A5B5933004A984B /* AuthCoordinator.swift */,
@@ -171,6 +227,131 @@
 			path = TextField;
 			sourceTree = "<group>";
 		};
+		6CBCCD932A5E1FB4004A984B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		6CBCCD982A5E32E4004A984B /* LoggingIn */ = {
+			isa = PBXGroup;
+			children = (
+				6CBCCD992A5E3301004A984B /* LoggingInViewController.swift */,
+				6CBCCD9B2A5E3312004A984B /* LoggingInViewModel.swift */,
+			);
+			path = LoggingIn;
+			sourceTree = "<group>";
+		};
+		6CBCCDB22A5F32E0004A984B /* UseCase */ = {
+			isa = PBXGroup;
+			children = (
+				6CBCCDB32A5F32F1004A984B /* LoginUseCase.swift */,
+			);
+			path = UseCase;
+			sourceTree = "<group>";
+		};
+		6CBCCDB72A5F3C06004A984B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				6CBCCDB52A5F390C004A984B /* PortalAuthError.swift */,
+				6CBCCDB82A5F3C13004A984B /* PortalAuthProgress.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		6CBCCDBA2A5F6A94004A984B /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				6CBCCDBB2A5F6AA5004A984B /* Stream+Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		6CEA64912A60B236009F786E /* Database */ = {
+			isa = PBXGroup;
+			children = (
+				6CEA64982A60C1CB009F786E /* Extensions */,
+				6CEA64942A60B3B3009F786E /* DataModel */,
+				6CEA64922A60B254009F786E /* UNESPersistenceController.swift */,
+			);
+			path = Database;
+			sourceTree = "<group>";
+		};
+		6CEA64942A60B3B3009F786E /* DataModel */ = {
+			isa = PBXGroup;
+			children = (
+				6CEA64952A60B3C6009F786E /* UNESDataModel.xcdatamodeld */,
+			);
+			path = DataModel;
+			sourceTree = "<group>";
+		};
+		6CEA64982A60C1CB009F786E /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				6C4058DB2A638A99004F5174 /* Grade+Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		6CEA649B2A632713009F786E /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				6CEA64A42A6327E7009F786E /* Tabs */,
+				6CEA64A52A632815009F786E /* HomeCoordinator.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		6CEA64A42A6327E7009F786E /* Tabs */ = {
+			isa = PBXGroup;
+			children = (
+				6CEA64B12A636F5B009F786E /* Grades */,
+				6CEA64B02A636F52009F786E /* Schedule */,
+				6CEA64A72A633013009F786E /* Messages */,
+				6CEA649E2A632792009F786E /* DashboardViewController.swift */,
+			);
+			path = Tabs;
+			sourceTree = "<group>";
+		};
+		6CEA64A72A633013009F786E /* Messages */ = {
+			isa = PBXGroup;
+			children = (
+				6CEA64A22A6327DB009F786E /* MessagesViewController.swift */,
+				6CEA64A82A633039009F786E /* MessageViewCell.swift */,
+				6CEA64AC2A634C7C009F786E /* MessagesViewModel.swift */,
+				6CEA64AE2A6352E3009F786E /* MessageViewLayout.swift */,
+			);
+			path = Messages;
+			sourceTree = "<group>";
+		};
+		6CEA64B02A636F52009F786E /* Schedule */ = {
+			isa = PBXGroup;
+			children = (
+				6CEA64A02A6327BC009F786E /* ScheduleViewController.swift */,
+			);
+			path = Schedule;
+			sourceTree = "<group>";
+		};
+		6CEA64B12A636F5B009F786E /* Grades */ = {
+			isa = PBXGroup;
+			children = (
+				6CEA64B22A636F79009F786E /* GradesViewController.swift */,
+			);
+			path = Grades;
+			sourceTree = "<group>";
+		};
+		6CEA64B42A637105009F786E /* Processor */ = {
+			isa = PBXGroup;
+			children = (
+				6CEA64B52A63711C009F786E /* PersonProcessor.swift */,
+				6CEA64B72A6373BE009F786E /* SemesterProcessor.swift */,
+				6CEA64B92A6375BD009F786E /* DisciplineProcessor.swift */,
+				6C972EF52A63859D00D681CE /* GradeProcessor.swift */,
+			);
+			path = Processor;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -185,8 +366,16 @@
 			buildRules = (
 			);
 			dependencies = (
+				6CBCCD972A5E2212004A984B /* PBXTargetDependency */,
 			);
 			name = UNES;
+			packageProductDependencies = (
+				6CBCCD942A5E1FB4004A984B /* Arcadia */,
+				6CBCCD9E2A5E34CD004A984B /* RxBlocking */,
+				6CBCCDA22A5E34CD004A984B /* RxCocoa */,
+				6CBCCDA62A5E34CD004A984B /* RxRelay */,
+				6CBCCDAA2A5E34CD004A984B /* RxSwift */,
+			);
 			productName = UNES;
 			productReference = 6CACE7AC2A59FFBC001117A6 /* UNES.app */;
 			productType = "com.apple.product-type.application";
@@ -215,6 +404,9 @@
 				Base,
 			);
 			mainGroup = 6CACE7A32A59FFBC001117A6;
+			packageReferences = (
+				6CBCCD9D2A5E34CD004A984B /* XCRemoteSwiftPackageReference "RxSwift" */,
+			);
 			productRefGroup = 6CACE7AD2A59FFBC001117A6 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -241,22 +433,48 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6CEA64A92A633039009F786E /* MessageViewCell.swift in Sources */,
 				6CACE7D42A5A0D49001117A6 /* AppDIContainer.swift in Sources */,
 				6CACE7D92A5A1174001117A6 /* WelcomeAppViewModel.swift in Sources */,
-				6CACE7BA2A59FFBC001117A6 /* UNES.xcdatamodeld in Sources */,
+				6CBCCDBC2A5F6AA5004A984B /* Stream+Extensions.swift in Sources */,
+				6CBCCD9A2A5E3301004A984B /* LoggingInViewController.swift in Sources */,
 				6CACE7D12A5A0C5F001117A6 /* MainCoordinator.swift in Sources */,
+				6CBCCDB92A5F3C13004A984B /* PortalAuthProgress.swift in Sources */,
+				6CEA649F2A632792009F786E /* DashboardViewController.swift in Sources */,
 				6CACE7CF2A5A0C1A001117A6 /* Coordinator.swift in Sources */,
+				6CEA64B62A63711C009F786E /* PersonProcessor.swift in Sources */,
+				6CEA64B82A6373BE009F786E /* SemesterProcessor.swift in Sources */,
 				6CBCCD852A5B5933004A984B /* AuthCoordinator.swift in Sources */,
+				6CEA64972A60B3C6009F786E /* UNESDataModel.xcdatamodeld in Sources */,
 				6CACE7D72A5A0E47001117A6 /* WelcomeAppViewController.swift in Sources */,
+				6CEA64A12A6327BC009F786E /* ScheduleViewController.swift in Sources */,
+				6CEA64BA2A6375BD009F786E /* DisciplineProcessor.swift in Sources */,
 				6CBCCD872A5B5A24004A984B /* LoginViewModel.swift in Sources */,
 				6CACE7B02A59FFBC001117A6 /* AppDelegate.swift in Sources */,
+				6CEA64AF2A6352E3009F786E /* MessageViewLayout.swift in Sources */,
+				6CEA64932A60B254009F786E /* UNESPersistenceController.swift in Sources */,
+				6CEA64AD2A634C7C009F786E /* MessagesViewModel.swift in Sources */,
+				6CEA64B32A636F79009F786E /* GradesViewController.swift in Sources */,
+				6C972EF62A63859D00D681CE /* GradeProcessor.swift in Sources */,
+				6CEA64A62A632815009F786E /* HomeCoordinator.swift in Sources */,
 				6CACE7DC2A5A3DFB001117A6 /* LoginViewController.swift in Sources */,
-				6CBCCD8F2A5E05DE004A984B /* TestingGrounds.swift in Sources */,
+				6CBCCD9C2A5E3312004A984B /* LoggingInViewModel.swift in Sources */,
 				6CACE7B22A59FFBC001117A6 /* SceneDelegate.swift in Sources */,
+				6CBCCDB62A5F390C004A984B /* PortalAuthError.swift in Sources */,
+				6CEA64A32A6327DB009F786E /* MessagesViewController.swift in Sources */,
+				6C4058DC2A638A99004F5174 /* Grade+Extensions.swift in Sources */,
+				6CBCCDB42A5F32F1004A984B /* LoginUseCase.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		6CBCCD972A5E2212004A984B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = 6CBCCD962A5E2212004A984B /* Arcadia */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		6CACE7BD2A59FFBD001117A6 /* LaunchScreen.storyboard */ = {
@@ -463,14 +681,56 @@
 		};
 /* End XCConfigurationList section */
 
+/* Begin XCRemoteSwiftPackageReference section */
+		6CBCCD9D2A5E34CD004A984B /* XCRemoteSwiftPackageReference "RxSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ReactiveX/RxSwift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		6CBCCD942A5E1FB4004A984B /* Arcadia */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Arcadia;
+		};
+		6CBCCD962A5E2212004A984B /* Arcadia */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Arcadia;
+		};
+		6CBCCD9E2A5E34CD004A984B /* RxBlocking */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6CBCCD9D2A5E34CD004A984B /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxBlocking;
+		};
+		6CBCCDA22A5E34CD004A984B /* RxCocoa */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6CBCCD9D2A5E34CD004A984B /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxCocoa;
+		};
+		6CBCCDA62A5E34CD004A984B /* RxRelay */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6CBCCD9D2A5E34CD004A984B /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxRelay;
+		};
+		6CBCCDAA2A5E34CD004A984B /* RxSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6CBCCD9D2A5E34CD004A984B /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
+
 /* Begin XCVersionGroup section */
-		6CACE7B82A59FFBC001117A6 /* UNES.xcdatamodeld */ = {
+		6CEA64952A60B3C6009F786E /* UNESDataModel.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				6CACE7B92A59FFBC001117A6 /* UNES.xcdatamodel */,
+				6CEA64962A60B3C6009F786E /* UNESDataModel.xcdatamodel */,
 			);
-			currentVersion = 6CACE7B92A59FFBC001117A6 /* UNES.xcdatamodel */;
-			path = UNES.xcdatamodeld;
+			currentVersion = 6CEA64962A60B3C6009F786E /* UNESDataModel.xcdatamodel */;
+			path = UNESDataModel.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

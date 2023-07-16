@@ -52,7 +52,6 @@ class LoginViewController : UIViewController {
         btnAbout.tintColor = .systemBlue
         btnAbout.translatesAutoresizingMaskIntoConstraints = false
         
-        
         let card = UIView()
         card.backgroundColor = .white
         card.layer.cornerRadius = 8
@@ -73,6 +72,8 @@ class LoginViewController : UIViewController {
         btnLogin.configuration = .filled()
         btnLogin.configuration?.title = "Entrar"
         btnLogin.translatesAutoresizingMaskIntoConstraints = false
+        btnLogin.addTarget(self, action: #selector(onLogin), for: .touchUpInside)
+        
         
         view.addSubview(imageBg)
         view.addSubview(btnAbout)
@@ -132,7 +133,6 @@ class LoginViewController : UIViewController {
     @objc func onLogin() {
         guard let username = inputUsername.text else { return }
         guard let password = inputPassword.text else { return }
-        
-        print("Username [\(username)] >< Password [\(password)]")
+        vm.onLogin(username: username, password: password)
     }
 }

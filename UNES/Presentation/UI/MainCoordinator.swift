@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import CoreData
 
 class MainCoordinator : Coordinator {
     private let container: AppDIContainer
@@ -17,7 +18,15 @@ class MainCoordinator : Coordinator {
     }
     
     func start() {
-        // TODO: Check if connected
-        AuthCoordinator(container: container, window: window).start()
+        let request = AccessEntity.fetchRequest()
+        request.fetchLimit = 1
+        let item = try? UNESPersistenceController.shared.container.viewContext.fetch(request).first
+        if item == nil {
+            print("Not connected")
+            AuthCoordinator(container: container, window: window).start()
+        } else {
+            print("Already connected. Moving home")
+            HomeCoordinator(container: container, window: window).start()
+        }
     }
 }
