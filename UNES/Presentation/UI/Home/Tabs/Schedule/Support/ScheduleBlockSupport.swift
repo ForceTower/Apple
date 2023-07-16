@@ -32,7 +32,6 @@ class ScheduleBlockSupport {
         let timers = locations.map { it in
             Timed(start: Int(it.startsAtInt), end: Int(it.endsAtInt), startString: it.startsAt, endString: it.endsAt)
         }.distinct { $0.start }.sorted { $0.start < $1.start }
-        print("Timers \(timers)")
         
         var result = Dictionary(grouping: locations, by: \.dayInt)
             .mapValues { values in
@@ -49,8 +48,6 @@ class ScheduleBlockSupport {
         result[-1] = timers.map { timed in
             TimeSpace(start: timed.startString!, end: timed.endString!, startInt: timed.start, endInt: timed.end)
         }
-        
-        print("Location result \(result)")
         
         return result
     }
@@ -78,7 +75,6 @@ class ScheduleBlockSupport {
                 if let location = location as? ElementSpace,
                    let code = location.location.group?.clazz?.discipline?.code {
                     if disciplineColors[code] == nil {
-                        print("Setup color for \(code)")
                         disciplineColors[code] = colorIndex
                         colorIndex += 1
                     }
