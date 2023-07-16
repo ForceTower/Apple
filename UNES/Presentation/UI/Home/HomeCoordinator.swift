@@ -26,7 +26,7 @@ class HomeCoordinator : Coordinator {
 //        let dashboard = DashboardViewController()
 //        dashboard.tabBarItem = UITabBarItem(title: "Início", image: .init(systemName: "doc.richtext"), tag: 0)
         
-        let schedule = UINavigationController(rootViewController: ScheduleViewController())
+        let schedule = UINavigationController(rootViewController: ScheduleViewController(vm: ScheduleViewModel()))
         schedule.tabBarItem = UITabBarItem(title: "Horários", image: .init(systemName: "clock"), tag: 1)
         
         let messages = UINavigationController(rootViewController: MessagesViewControler(vm: MessagesViewModel()))

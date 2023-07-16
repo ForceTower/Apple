@@ -46,6 +46,7 @@
         <attribute name="teacherEmail" optional="YES" attributeType="String"/>
         <attribute name="teacherId" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <relationship name="clazz" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ClassEntity" inverseName="groups" inverseEntity="ClassEntity"/>
+        <relationship name="locations" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ClassLocationEntity" inverseName="group" inverseEntity="ClassLocationEntity"/>
         <uniquenessConstraints>
             <uniquenessConstraint>
                 <constraint value="classId"/>
@@ -68,6 +69,7 @@
         <attribute name="room" optional="YES" attributeType="String"/>
         <attribute name="startsAt" attributeType="String"/>
         <attribute name="startsAtInt" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="group" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ClassGroupEntity" inverseName="locations" inverseEntity="ClassGroupEntity"/>
         <uniquenessConstraints>
             <uniquenessConstraint>
                 <constraint value="groupId"/>

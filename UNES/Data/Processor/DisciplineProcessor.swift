@@ -83,8 +83,7 @@ class DisciplineProcessor {
                     group.teacherId = Int64(teacherId)
                 }
                 group.teacherEmail = clazz.teacher?.email
-                
-                bound.groups?.adding(group)
+                group.clazz = bound
                 
                 if currentSemester?.id == semesterId {
                     clazz.allocations.forEach { alloc in
@@ -110,11 +109,25 @@ class DisciplineProcessor {
             }
         }
         
-        expandLocations(allocations, context: context)
+        try expandLocations(allocations, context: context)
         try context.save()
     }
     
-    private static func expandLocations(_ locations: [LocalClassLocation], context: NSManagedObjectContext) {
+    private static func expandLocations(_ locations: [LocalClassLocation], context: NSManagedObjectContext) throws {
+        if locations.isEmpty { return }
+        let delete = try context.execute(NSBatchDeleteRequest(fetchRequest: ClassLocationEntity.fetchRequest())) as? NSBatchDeleteResult
+        
+        if let deleteResult = delete?.result as? [NSManagedObjectID] {
+            let deletedObjects: [AnyHashable: Any] = [
+                NSDeletedObjectsKey: deleteResult
+            ]
+            NSManagedObjectContext.mergeChanges(
+                fromRemoteContextSave: deletedObjects,
+                into: [context]
+            )
+        }
+        
+        
         let starts = Dictionary(grouping: locations, by: \.startAtInt).mapValues { it in it.first!.startAt }
         let ends = Dictionary(grouping: locations, by: \.endsAtInt).mapValues { it in it.first!.endAt }
         
@@ -139,6 +152,7 @@ class DisciplineProcessor {
                 loc.startsAtInt = Int16(start)
                 loc.endsAt = allMapped[end]
                 loc.endsAtInt = Int16(end)
+                loc.group = location.group
                 
                 index += 1
                 start = end
@@ -156,12 +170,13 @@ class DisciplineProcessor {
             loc.startsAtInt = Int16(start)
             loc.endsAt = allMapped[end]
             loc.endsAtInt = Int16(end)
+            loc.group = location.group
             
             print("Expanded locations")
         }
     }
     
-    private static func weekDayOf(_ value: Int) -> String {
+    static func weekDayOf(_ value: Int) -> String {
         switch(value) {
         case 1: return "DOM"
         case 2: return "SEG"
