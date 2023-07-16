@@ -11,6 +11,7 @@ import Combine
 import Alamofire
 
 class LoggingInViewModel {
+    private let coordinator: AuthCoordinator
     private let loginUseCase: LoginUseCase
     private let username: String
     private let password: String
@@ -27,10 +28,11 @@ class LoggingInViewModel {
     
     private var loginTask: Task<Void, Never>? = nil
     
-    init(username: String, password: String, loginUseCase: LoginUseCase) {
+    init(username: String, password: String, coordinator: AuthCoordinator, loginUseCase: LoginUseCase) {
         self.username = username
         self.password = password
         self.loginUseCase = loginUseCase
+        self.coordinator = coordinator
     }
     
     func start() {
@@ -69,5 +71,9 @@ class LoggingInViewModel {
             }
         }
         _onLoginProgress.send(completion: .failure(.otherError))
+    }
+    
+    func onLoginCompleted() {
+        coordinator.navigateToSignedIn()
     }
 }

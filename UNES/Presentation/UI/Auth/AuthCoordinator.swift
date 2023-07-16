@@ -11,18 +11,19 @@ import UIKit
 class AuthCoordinator : Coordinator {
     private let container: AppDIContainer
     private let window: UIWindow
+    private let coordinator: MainCoordinator
     
     private var navigation: UINavigationController? = nil
     
-    init(container: AppDIContainer, window: UIWindow) {
+    init(container: AppDIContainer, window: UIWindow, coordinator: MainCoordinator) {
         self.container = container
         self.window = window
+        self.coordinator = coordinator
     }
     
     func start() {
         let vc = WelcomeAppViewController(vm: WelcomeAppViewModel(coordinator: self))
         navigation = UINavigationController(rootViewController: vc)
-//        let vc = LoginViewController(vm: LoginViewModel(coordinator: self))
         window.rootViewController = navigation
         window.makeKeyAndVisible()
     }
@@ -30,16 +31,14 @@ class AuthCoordinator : Coordinator {
     func navigateToLoginFlow() {
         let vc = LoginViewController(vm: LoginViewModel(coordinator: self))
         navigation?.pushViewController(vc, animated: true)
-//        window.rootViewController = navigation
-//        UIView.transition(with: window,
-//                          duration: 0.3,
-//                          options: .transitionCrossDissolve,
-//                          animations: nil,
-//                          completion: nil)
     }
     
     func navigateToLoggingIn(username: String, password: String) {
-        let vc = LoggingInViewController(vm: LoggingInViewModel(username: username, password: password, loginUseCase: LoginUseCase()))
+        let vc = LoggingInViewController(vm: LoggingInViewModel(username: username, password: password, coordinator: self, loginUseCase: LoginUseCase()))
         navigation?.pushViewController(vc, animated: true)
+    }
+    
+    func navigateToSignedIn() {
+        coordinator.navigateToHome()
     }
 }

@@ -1,5 +1,5 @@
 //
-//  GradesViewController.swift
+//  DisciplinesViewController.swift
 //  UNES
 //
 //  Created by João Santos Sena on 15/07/23.
@@ -7,12 +7,14 @@
 
 import UIKit
 
-class GradesViewController: UIViewController {
+class DisciplinesViewController: UIViewController {
     override func viewDidLoad() {
         view.backgroundColor = .systemBackground
+        title = "Disciplinas"
+        navigationController?.navigationBar.prefersLargeTitles = true
         
         let label = UILabel()
-        label.text = "Welcome to Schedule"
+        label.text = "Welcome to Disciplines"
         label.numberOfLines = 0
         label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false

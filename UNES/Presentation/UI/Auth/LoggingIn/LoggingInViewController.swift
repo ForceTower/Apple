@@ -70,10 +70,12 @@ class LoggingInViewController : UIViewController {
     }
     
     private func onLoginCompleted() {
+        vm.onLoginCompleted()
         print("Login completed!")
     }
     
     private func handleError(error: PortalAuthError) {
         print("Something wrong happened. Error: \(error)")
+        navigationController?.popViewController(animated: true)
     }
 }

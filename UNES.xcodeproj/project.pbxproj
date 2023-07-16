@@ -41,7 +41,7 @@
 		6CEA64A92A633039009F786E /* MessageViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CEA64A82A633039009F786E /* MessageViewCell.swift */; };
 		6CEA64AD2A634C7C009F786E /* MessagesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CEA64AC2A634C7C009F786E /* MessagesViewModel.swift */; };
 		6CEA64AF2A6352E3009F786E /* MessageViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CEA64AE2A6352E3009F786E /* MessageViewLayout.swift */; };
-		6CEA64B32A636F79009F786E /* GradesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CEA64B22A636F79009F786E /* GradesViewController.swift */; };
+		6CEA64B32A636F79009F786E /* DisciplinesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CEA64B22A636F79009F786E /* DisciplinesViewController.swift */; };
 		6CEA64B62A63711C009F786E /* PersonProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CEA64B52A63711C009F786E /* PersonProcessor.swift */; };
 		6CEA64B82A6373BE009F786E /* SemesterProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CEA64B72A6373BE009F786E /* SemesterProcessor.swift */; };
 		6CEA64BA2A6375BD009F786E /* DisciplineProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CEA64B92A6375BD009F786E /* DisciplineProcessor.swift */; };
@@ -80,7 +80,7 @@
 		6CEA64A82A633039009F786E /* MessageViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageViewCell.swift; sourceTree = "<group>"; };
 		6CEA64AC2A634C7C009F786E /* MessagesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesViewModel.swift; sourceTree = "<group>"; };
 		6CEA64AE2A6352E3009F786E /* MessageViewLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageViewLayout.swift; sourceTree = "<group>"; };
-		6CEA64B22A636F79009F786E /* GradesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradesViewController.swift; sourceTree = "<group>"; };
+		6CEA64B22A636F79009F786E /* DisciplinesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisciplinesViewController.swift; sourceTree = "<group>"; };
 		6CEA64B52A63711C009F786E /* PersonProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonProcessor.swift; sourceTree = "<group>"; };
 		6CEA64B72A6373BE009F786E /* SemesterProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SemesterProcessor.swift; sourceTree = "<group>"; };
 		6CEA64B92A6375BD009F786E /* DisciplineProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisciplineProcessor.swift; sourceTree = "<group>"; };
@@ -306,7 +306,7 @@
 		6CEA64A42A6327E7009F786E /* Tabs */ = {
 			isa = PBXGroup;
 			children = (
-				6CEA64B12A636F5B009F786E /* Grades */,
+				6CEA64B12A636F5B009F786E /* Disciplines */,
 				6CEA64B02A636F52009F786E /* Schedule */,
 				6CEA64A72A633013009F786E /* Messages */,
 				6CEA649E2A632792009F786E /* DashboardViewController.swift */,
@@ -333,12 +333,12 @@
 			path = Schedule;
 			sourceTree = "<group>";
 		};
-		6CEA64B12A636F5B009F786E /* Grades */ = {
+		6CEA64B12A636F5B009F786E /* Disciplines */ = {
 			isa = PBXGroup;
 			children = (
-				6CEA64B22A636F79009F786E /* GradesViewController.swift */,
+				6CEA64B22A636F79009F786E /* DisciplinesViewController.swift */,
 			);
-			path = Grades;
+			path = Disciplines;
 			sourceTree = "<group>";
 		};
 		6CEA64B42A637105009F786E /* Processor */ = {
@@ -454,7 +454,7 @@
 				6CEA64AF2A6352E3009F786E /* MessageViewLayout.swift in Sources */,
 				6CEA64932A60B254009F786E /* UNESPersistenceController.swift in Sources */,
 				6CEA64AD2A634C7C009F786E /* MessagesViewModel.swift in Sources */,
-				6CEA64B32A636F79009F786E /* GradesViewController.swift in Sources */,
+				6CEA64B32A636F79009F786E /* DisciplinesViewController.swift in Sources */,
 				6C972EF62A63859D00D681CE /* GradeProcessor.swift in Sources */,
 				6CEA64A62A632815009F786E /* HomeCoordinator.swift in Sources */,
 				6CACE7DC2A5A3DFB001117A6 /* LoginViewController.swift in Sources */,

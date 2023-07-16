@@ -12,30 +12,32 @@ import UIKit
 class HomeCoordinator : Coordinator {
     private let container: AppDIContainer
     private let window: UIWindow
+    private let coordinator: MainCoordinator
     
-    init(container: AppDIContainer, window: UIWindow) {
+    init(container: AppDIContainer, window: UIWindow, coordinator: MainCoordinator) {
         self.container = container
         self.window = window
+        self.coordinator = coordinator
     }
     
     func start() {
         let tabBar = UITabBarController()
         
-        let dashboard = DashboardViewController()
-        dashboard.tabBarItem = UITabBarItem(title: "Início", image: .init(systemName: "doc.richtext"), tag: 0)
+//        let dashboard = DashboardViewController()
+//        dashboard.tabBarItem = UITabBarItem(title: "Início", image: .init(systemName: "doc.richtext"), tag: 0)
         
-        let schedule = ScheduleViewController()
+        let schedule = UINavigationController(rootViewController: ScheduleViewController())
         schedule.tabBarItem = UITabBarItem(title: "Horários", image: .init(systemName: "clock"), tag: 1)
         
         let messages = UINavigationController(rootViewController: MessagesViewControler(vm: MessagesViewModel()))
         messages.tabBarItem = UITabBarItem(title: "Mensagens", image: .init(systemName: "envelope"), tag: 2)
         
         
-        let disciplines = UINavigationController(rootViewController: GradesViewController())
+        let disciplines = UINavigationController(rootViewController: DisciplinesViewController())
         disciplines.tabBarItem = UITabBarItem(title: "Disciplinas", image: .init(systemName: "book"), tag: 3)
         // list.bullet for more
         
-        tabBar.setViewControllers([dashboard, schedule, messages, disciplines], animated: true)
+        tabBar.setViewControllers([schedule, messages, disciplines], animated: true)
         
         window.rootViewController = tabBar
         window.makeKeyAndVisible()

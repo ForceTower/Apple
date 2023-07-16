@@ -23,10 +23,14 @@ class MainCoordinator : Coordinator {
         let item = try? UNESPersistenceController.shared.container.viewContext.fetch(request).first
         if item == nil {
             print("Not connected")
-            AuthCoordinator(container: container, window: window).start()
+            AuthCoordinator(container: container, window: window, coordinator: self).start()
         } else {
             print("Already connected. Moving home")
-            HomeCoordinator(container: container, window: window).start()
+            HomeCoordinator(container: container, window: window, coordinator: self).start()
         }
+    }
+    
+    func navigateToHome() {
+        HomeCoordinator(container: container, window: window, coordinator: self).start()
     }
 }

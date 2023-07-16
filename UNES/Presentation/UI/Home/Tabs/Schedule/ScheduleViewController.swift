@@ -10,6 +10,8 @@ import UIKit
 class ScheduleViewController: UIViewController {
     override func viewDidLoad() {
         view.backgroundColor = .systemBackground
+        title = "Horários"
+        navigationController?.navigationBar.prefersLargeTitles = true
         
         let label = UILabel()
         label.text = "Welcome to Schedule"
