@@ -9,7 +9,8 @@ import UIKit
 
 class LoginViewController : UIViewController {
     private let vm: LoginViewModel
-    private let inputUsername: UITextField = {
+    
+    private lazy var inputUsername: UITextField = {
         let input = UITextField()
         input.borderStyle = .none
         input.setLeftPaddingPoints(10)
@@ -17,11 +18,13 @@ class LoginViewController : UIViewController {
         input.placeholder = "Usuário"
         input.autocapitalizationType = .none
         input.autocorrectionType = .no
+//        input.delegate = self
+        input.returnKeyType = .next
         input.translatesAutoresizingMaskIntoConstraints = false
         return input
     }()
     
-    private let inputPassword: UITextField = {
+    private lazy var inputPassword: UITextField = {
         let input = UITextField()
         input.borderStyle = .none
         input.setLeftPaddingPoints(10)
@@ -30,8 +33,36 @@ class LoginViewController : UIViewController {
         input.autocapitalizationType = .none
         input.autocorrectionType = .no
         input.isSecureTextEntry = true
+        input.returnKeyType = .done
         input.translatesAutoresizingMaskIntoConstraints = false
         return input
+    }()
+    
+    private let btnLogin: UIButton = {
+        let btn = UIButton()
+        btn.configuration = .filled()
+        btn.configuration?.title = "Entrar"
+        btn.translatesAutoresizingMaskIntoConstraints = false
+        return btn
+    }()
+    
+    private let scrollView: UIScrollView = {
+        let view = UIScrollView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
+    private let stack: UIStackView = {
+        let stack = UIStackView()
+        stack.axis = .vertical
+        stack.translatesAutoresizingMaskIntoConstraints = false
+        return stack
+    }()
+    
+    private let scrollViewContent: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
     }()
     
     init(vm: LoginViewModel) {
@@ -49,28 +80,22 @@ class LoginViewController : UIViewController {
         imageLogo.clipsToBounds = true
         imageLogo.translatesAutoresizingMaskIntoConstraints = false
         
-//        let btnAbout = UIButton()
-//        btnAbout.configuration = .plain()
-//        btnAbout.configuration?.title = "Sobre o UNES"
-//        btnAbout.tintColor = .systemBlue
-//        btnAbout.translatesAutoresizingMaskIntoConstraints = false
+        let btnAbout = UIButton()
+        btnAbout.configuration = .plain()
+        btnAbout.configuration?.title = "Sobre o UNES"
+        btnAbout.tintColor = .systemBlue
+        btnAbout.translatesAutoresizingMaskIntoConstraints = false
         
         let labelInfo = UILabel()
         labelInfo.text = "Entre usando a sua conta do Portal"
         labelInfo.font = .systemFont(ofSize: 14, weight: .medium)
         labelInfo.numberOfLines = 0
-        labelInfo.textAlignment = .left
+        labelInfo.textAlignment = .center
         labelInfo.translatesAutoresizingMaskIntoConstraints = false
         
-        let btnLogin = UIButton()
-        btnLogin.configuration = .filled()
-        btnLogin.configuration?.title = "Entrar"
-        btnLogin.translatesAutoresizingMaskIntoConstraints = false
         btnLogin.addTarget(self, action: #selector(onLogin), for: .touchUpInside)
-        
-        let stack = UIStackView()
-        stack.axis = .vertical
-        stack.translatesAutoresizingMaskIntoConstraints = false
+        inputUsername.addTarget(self, action: #selector(onNextUsername), for: .primaryActionTriggered)
+        inputPassword.addTarget(self, action: #selector(onLogin), for: .primaryActionTriggered)
         
         let loginForm = UIView()
         loginForm.layer.borderWidth = 1
@@ -82,9 +107,12 @@ class LoginViewController : UIViewController {
         hairlineForm.backgroundColor = .lightGray.withAlphaComponent(0.5)
         hairlineForm.translatesAutoresizingMaskIntoConstraints = false
         
+        view.addSubview(btnAbout)
+        view.addSubview(scrollView)
         
-//        view.addSubview(btnAbout)
-        view.addSubview(stack)
+        scrollView.addSubview(scrollViewContent)
+        scrollViewContent.addSubview(stack)
+        
         stack.addArrangedSubview(imageLogo)
         stack.addArrangedSubview(labelInfo)
         stack.addArrangedSubview(loginForm)
@@ -99,22 +127,28 @@ class LoginViewController : UIViewController {
         loginForm.addSubview(inputPassword)
         
         NSLayoutConstraint.activate([
-            imageLogo.heightAnchor.constraint(equalToConstant: 200)
-        ])
-        
-//        NSLayoutConstraint.activate([
-//            btnAbout.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -4),
-//            btnAbout.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-//            btnAbout.widthAnchor.constraint(equalToConstant: 180)
-//        ])
-        
-        NSLayoutConstraint.activate([
-            stack.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 24),
-            stack.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -24),
-            stack.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -36),
-        ])
-//
-        NSLayoutConstraint.activate([
+            imageLogo.heightAnchor.constraint(equalToConstant: 200),
+
+            btnAbout.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -4),
+            btnAbout.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            btnAbout.widthAnchor.constraint(equalToConstant: 180),
+            
+            scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            
+            scrollViewContent.topAnchor.constraint(equalTo: scrollView.contentLayoutGuide.topAnchor),
+            scrollViewContent.bottomAnchor.constraint(equalTo: scrollView.contentLayoutGuide.bottomAnchor),
+            scrollViewContent.leadingAnchor.constraint(equalTo: scrollView.contentLayoutGuide.leadingAnchor),
+            scrollViewContent.trailingAnchor.constraint(equalTo: scrollView.contentLayoutGuide.trailingAnchor),
+            scrollViewContent.widthAnchor.constraint(equalTo: scrollView.frameLayoutGuide.widthAnchor),
+            scrollViewContent.heightAnchor.constraint(equalTo: scrollView.frameLayoutGuide.heightAnchor),
+
+            stack.leadingAnchor.constraint(equalTo: scrollViewContent.safeAreaLayoutGuide.leadingAnchor, constant: 24),
+            stack.trailingAnchor.constraint(equalTo: scrollViewContent.safeAreaLayoutGuide.trailingAnchor, constant: -24),
+            stack.centerYAnchor.constraint(equalTo: scrollViewContent.safeAreaLayoutGuide.centerYAnchor, constant: -36),
+
             inputUsername.leadingAnchor.constraint(equalTo: loginForm.leadingAnchor),
             inputUsername.trailingAnchor.constraint(equalTo: loginForm.trailingAnchor),
             inputUsername.topAnchor.constraint(equalTo: loginForm.topAnchor),
@@ -132,12 +166,36 @@ class LoginViewController : UIViewController {
             inputPassword.heightAnchor.constraint(equalToConstant: 40),
         ])
         
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name:UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name:UIResponder.keyboardWillHideNotification, object: nil)
+
         view.backgroundColor = .systemBackground
     }
     
     @objc func onLogin() {
         guard let username = inputUsername.text else { return }
         guard let password = inputPassword.text else { return }
+        inputUsername.resignFirstResponder()
+        inputPassword.resignFirstResponder()
         vm.onLogin(username: username, password: password)
+    }
+    
+    @objc func onNextUsername() {
+        inputPassword.becomeFirstResponder()
+    }
+    
+    @objc func keyboardWillShow(notification:NSNotification) {
+        guard let userInfo = notification.userInfo else { return }
+        var keyboardFrame = (userInfo[UIResponder.keyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue
+        keyboardFrame = self.view.convert(keyboardFrame, from: nil)
+
+        var contentInset = self.scrollView.contentInset
+        contentInset.bottom = keyboardFrame.size.height + 20
+        scrollView.contentInset = contentInset
+    }
+
+    @objc func keyboardWillHide(notification:NSNotification) {
+        let contentInset = UIEdgeInsets.zero
+        scrollView.contentInset = contentInset
     }
 }
