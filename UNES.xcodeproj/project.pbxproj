@@ -48,6 +48,7 @@
 		6CD09AC92A6493120043E20D /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = 6CD09AC82A6493120043E20D /* FirebaseMessaging */; };
 		6CD09ACB2A6493120043E20D /* FirebaseRemoteConfig in Frameworks */ = {isa = PBXBuildFile; productRef = 6CD09ACA2A6493120043E20D /* FirebaseRemoteConfig */; };
 		6CD09ACD2A6493120043E20D /* FirebaseRemoteConfigSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 6CD09ACC2A6493120043E20D /* FirebaseRemoteConfigSwift */; };
+		6CD09AD12A64D51D0043E20D /* UITextField+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD09AD02A64D51D0043E20D /* UITextField+Extensions.swift */; };
 		6CEA64932A60B254009F786E /* UNESPersistenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CEA64922A60B254009F786E /* UNESPersistenceController.swift */; };
 		6CEA64972A60B3C6009F786E /* UNESDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6CEA64952A60B3C6009F786E /* UNESDataModel.xcdatamodeld */; };
 		6CEA649F2A632792009F786E /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CEA649E2A632792009F786E /* DashboardViewController.swift */; };
@@ -98,6 +99,8 @@
 		6CD09ABB2A6488D80043E20D /* ScheduleEmptyViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleEmptyViewCell.swift; sourceTree = "<group>"; };
 		6CD09ABD2A6488E80043E20D /* ScheduleTimeViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleTimeViewCell.swift; sourceTree = "<group>"; };
 		6CD09ABF2A6492890043E20D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		6CD09ACF2A64D4780043E20D /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
+		6CD09AD02A64D51D0043E20D /* UITextField+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extensions.swift"; sourceTree = "<group>"; };
 		6CEA64922A60B254009F786E /* UNESPersistenceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UNESPersistenceController.swift; sourceTree = "<group>"; };
 		6CEA64962A60B3C6009F786E /* UNESDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = UNESDataModel.xcdatamodel; sourceTree = "<group>"; };
 		6CEA649E2A632792009F786E /* DashboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
@@ -321,6 +324,7 @@
 			children = (
 				6CBCCDBB2A5F6AA5004A984B /* Stream+Extensions.swift */,
 				6C4F65BF2A6420E8009C84CA /* Sequence+Extensions.swift */,
+				6CD09AD02A64D51D0043E20D /* UITextField+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -422,6 +426,7 @@
 				6CACE7A82A59FFBC001117A6 /* Sources */,
 				6CACE7A92A59FFBC001117A6 /* Frameworks */,
 				6CACE7AA2A59FFBC001117A6 /* Resources */,
+				6CD09ACE2A6494FF0043E20D /* Upload Crashlytics DSYM File */,
 			);
 			buildRules = (
 			);
@@ -463,11 +468,11 @@
 			};
 			buildConfigurationList = 6CACE7A72A59FFBC001117A6 /* Build configuration list for PBXProject "UNES" */;
 			compatibilityVersion = "Xcode 14.0";
-			developmentRegion = en;
+			developmentRegion = "pt-BR";
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				en,
 				Base,
+				"pt-BR",
 			);
 			mainGroup = 6CACE7A32A59FFBC001117A6;
 			packageReferences = (
@@ -496,6 +501,30 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		6CD09ACE2A6494FF0043E20D /* Upload Crashlytics DSYM File */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${TARGET_NAME}",
+				"$(SRCROOT)/$(BUILT_PRODUCTS_DIR)/$(INFOPLIST_PATH)",
+			);
+			name = "Upload Crashlytics DSYM File";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\"${BUILD_DIR%/Build/*}/SourcePackages/checkouts/firebase-ios-sdk/Crashlytics/run\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		6CACE7A82A59FFBC001117A6 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -504,6 +533,7 @@
 				6CEA64A92A633039009F786E /* MessageViewCell.swift in Sources */,
 				6C4F65C22A642F76009C84CA /* ColumnFlowLayout.swift in Sources */,
 				6CACE7D42A5A0D49001117A6 /* AppDIContainer.swift in Sources */,
+				6CD09AD12A64D51D0043E20D /* UITextField+Extensions.swift in Sources */,
 				6C4F65C02A6420E8009C84CA /* Sequence+Extensions.swift in Sources */,
 				6CACE7D92A5A1174001117A6 /* WelcomeAppViewModel.swift in Sources */,
 				6CBCCDBC2A5F6AA5004A984B /* Stream+Extensions.swift in Sources */,
@@ -558,6 +588,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				6CACE7BE2A59FFBD001117A6 /* Base */,
+				6CD09ACF2A64D4780043E20D /* pt-BR */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -569,6 +600,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -629,6 +661,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -687,6 +720,7 @@
 				CODE_SIGN_ENTITLEMENTS = UNES/UNES.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 5GH6Q6KS69;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = UNES/Info.plist;

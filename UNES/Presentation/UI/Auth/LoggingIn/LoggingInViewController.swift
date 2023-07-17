@@ -41,7 +41,6 @@ class LoggingInViewController : UIViewController {
         navigationItem.hidesBackButton = true
         
         view.addSubview(labelName)
-        view.backgroundColor = .systemBlue
         
         NSLayoutConstraint.activate([
             labelName.centerYAnchor.constraint(equalTo: view.centerYAnchor),

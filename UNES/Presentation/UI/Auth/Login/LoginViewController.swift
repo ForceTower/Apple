@@ -11,7 +11,9 @@ class LoginViewController : UIViewController {
     private let vm: LoginViewModel
     private let inputUsername: UITextField = {
         let input = UITextField()
-        input.borderStyle = .roundedRect
+        input.borderStyle = .none
+        input.setLeftPaddingPoints(10)
+        input.setRightPaddingPoints(10)
         input.placeholder = "Usuário"
         input.autocapitalizationType = .none
         input.autocorrectionType = .no
@@ -21,7 +23,9 @@ class LoginViewController : UIViewController {
     
     private let inputPassword: UITextField = {
         let input = UITextField()
-        input.borderStyle = .roundedRect
+        input.borderStyle = .none
+        input.setLeftPaddingPoints(10)
+        input.setRightPaddingPoints(10)
         input.placeholder = "Senha"
         input.autocapitalizationType = .none
         input.autocorrectionType = .no
@@ -40,26 +44,16 @@ class LoginViewController : UIViewController {
     }
     
     override func viewDidLoad() {
-        let background = UIImage(named: "new_login")
-        let imageBg = UIImageView(image: background)
-        imageBg.contentMode = .scaleAspectFill
-        imageBg.translatesAutoresizingMaskIntoConstraints = false
+        let imageLogo = UIImageView(image: UIImage(named: "ColoredLogo"))
+        imageLogo.contentMode = UIImageView.ContentMode.scaleAspectFit
+        imageLogo.clipsToBounds = true
+        imageLogo.translatesAutoresizingMaskIntoConstraints = false
         
-        
-        let btnAbout = UIButton()
-        btnAbout.configuration = .plain()
-        btnAbout.configuration?.title = "Sobre o UNES"
-        btnAbout.tintColor = .systemBlue
-        btnAbout.translatesAutoresizingMaskIntoConstraints = false
-        
-        let card = UIView()
-        card.backgroundColor = .white
-        card.layer.cornerRadius = 8
-        card.layer.shadowColor = UIColor.black.cgColor
-        card.layer.shadowOpacity = 0.3
-        card.layer.shadowOffset = .zero
-        card.layer.shadowRadius = 2
-        card.translatesAutoresizingMaskIntoConstraints = false
+//        let btnAbout = UIButton()
+//        btnAbout.configuration = .plain()
+//        btnAbout.configuration?.title = "Sobre o UNES"
+//        btnAbout.tintColor = .systemBlue
+//        btnAbout.translatesAutoresizingMaskIntoConstraints = false
         
         let labelInfo = UILabel()
         labelInfo.text = "Entre usando a sua conta do Portal"
@@ -74,57 +68,68 @@ class LoginViewController : UIViewController {
         btnLogin.translatesAutoresizingMaskIntoConstraints = false
         btnLogin.addTarget(self, action: #selector(onLogin), for: .touchUpInside)
         
+        let stack = UIStackView()
+        stack.axis = .vertical
+        stack.translatesAutoresizingMaskIntoConstraints = false
         
-        view.addSubview(imageBg)
-        view.addSubview(btnAbout)
-        view.addSubview(card)
-        card.addSubview(labelInfo)
-        card.addSubview(inputUsername)
-        card.addSubview(inputPassword)
-        card.addSubview(btnLogin)
+        let loginForm = UIView()
+        loginForm.layer.borderWidth = 1
+        loginForm.layer.borderColor = UIColor.lightGray.withAlphaComponent(0.5).cgColor
+        loginForm.layer.cornerRadius = 8
+        loginForm.translatesAutoresizingMaskIntoConstraints = false
+        
+        let hairlineForm = UIView()
+        hairlineForm.backgroundColor = .lightGray.withAlphaComponent(0.5)
+        hairlineForm.translatesAutoresizingMaskIntoConstraints = false
+        
+        
+//        view.addSubview(btnAbout)
+        view.addSubview(stack)
+        stack.addArrangedSubview(imageLogo)
+        stack.addArrangedSubview(labelInfo)
+        stack.addArrangedSubview(loginForm)
+        stack.addArrangedSubview(btnLogin)
+        
+        stack.setCustomSpacing(16, after: imageLogo)
+        stack.setCustomSpacing(8, after: labelInfo)
+        stack.setCustomSpacing(16, after: loginForm)
+        
+        loginForm.addSubview(inputUsername)
+        loginForm.addSubview(hairlineForm)
+        loginForm.addSubview(inputPassword)
         
         NSLayoutConstraint.activate([
-            imageBg.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            imageBg.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            imageBg.topAnchor.constraint(equalTo: view.topAnchor),
-            imageBg.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            imageLogo.heightAnchor.constraint(equalToConstant: 200)
         ])
         
-        NSLayoutConstraint.activate([
-            btnAbout.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -4),
-            btnAbout.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            btnAbout.widthAnchor.constraint(equalToConstant: 180)
-        ])
+//        NSLayoutConstraint.activate([
+//            btnAbout.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -4),
+//            btnAbout.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+//            btnAbout.widthAnchor.constraint(equalToConstant: 180)
+//        ])
         
         NSLayoutConstraint.activate([
-            card.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 24),
-            card.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -24),
-            card.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            stack.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 24),
+            stack.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -24),
+            stack.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -36),
         ])
-
+//
         NSLayoutConstraint.activate([
-            labelInfo.leadingAnchor.constraint(equalTo: card.leadingAnchor, constant: 16),
-            labelInfo.trailingAnchor.constraint(equalTo: card.trailingAnchor, constant: -16),
-            labelInfo.topAnchor.constraint(equalTo: card.topAnchor, constant: 16),
-        ])
-
-        NSLayoutConstraint.activate([
-            inputUsername.leadingAnchor.constraint(equalTo: card.leadingAnchor, constant: 16),
-            inputUsername.trailingAnchor.constraint(equalTo: card.trailingAnchor, constant: -16),
-            inputUsername.topAnchor.constraint(equalTo: labelInfo.bottomAnchor, constant: 8),
-            inputUsername.heightAnchor.constraint(equalToConstant: 36)
-        ])
-
-        NSLayoutConstraint.activate([
-            inputPassword.leadingAnchor.constraint(equalTo: card.leadingAnchor, constant: 16),
-            inputPassword.trailingAnchor.constraint(equalTo: card.trailingAnchor, constant: -16),
-            inputPassword.topAnchor.constraint(equalTo: inputUsername.bottomAnchor, constant: 4),
-        ])
-
-        NSLayoutConstraint.activate([
-            btnLogin.trailingAnchor.constraint(equalTo: card.trailingAnchor, constant: -16),
-            btnLogin.topAnchor.constraint(equalTo: inputPassword.bottomAnchor, constant: 16),
-            btnLogin.bottomAnchor.constraint(equalTo: card.bottomAnchor, constant: -16)
+            inputUsername.leadingAnchor.constraint(equalTo: loginForm.leadingAnchor),
+            inputUsername.trailingAnchor.constraint(equalTo: loginForm.trailingAnchor),
+            inputUsername.topAnchor.constraint(equalTo: loginForm.topAnchor),
+            inputUsername.heightAnchor.constraint(equalToConstant: 40),
+            
+            hairlineForm.topAnchor.constraint(equalTo: inputUsername.bottomAnchor),
+            hairlineForm.leadingAnchor.constraint(equalTo: loginForm.leadingAnchor),
+            hairlineForm.trailingAnchor.constraint(equalTo: loginForm.trailingAnchor),
+            hairlineForm.heightAnchor.constraint(equalToConstant: 1),
+            
+            inputPassword.leadingAnchor.constraint(equalTo: loginForm.leadingAnchor),
+            inputPassword.trailingAnchor.constraint(equalTo: loginForm.trailingAnchor),
+            inputPassword.topAnchor.constraint(equalTo: hairlineForm.bottomAnchor),
+            inputPassword.bottomAnchor.constraint(equalTo: loginForm.bottomAnchor),
+            inputPassword.heightAnchor.constraint(equalToConstant: 40),
         ])
         
         view.backgroundColor = .systemBackground

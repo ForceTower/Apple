@@ -34,7 +34,7 @@ class WelcomeAppViewController : UIViewController {
         labelWelcomeTitle.translatesAutoresizingMaskIntoConstraints = false
         
         let labelWelcomeCaption = UILabel()
-        labelWelcomeCaption.text = "A maneira mais fácil de acessar o Sagres"
+        labelWelcomeCaption.text = "A maneira mais fácil de acessar o Portal do Aluno"
         labelWelcomeCaption.font = .systemFont(ofSize: 15)
         labelWelcomeCaption.textColor = .darkGray
         labelWelcomeCaption.numberOfLines = 0
