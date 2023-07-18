@@ -21,7 +21,7 @@ class DisciplineListSupport {
     static func transformClassesIntoUiElements(
         semesters: [SemesterEntity],
         classes: [ClassEntity]
-    ) -> [DisciplineHelperData] {
+    ) -> [[DisciplineHelperData]] {
         let semesters = semesters.sorted { $0.id > $1.id }
         let completedMap = Dictionary(grouping: classes, by: \.semesterId).mapValues { disciplines in
             var result = [DisciplineHelperData]()
@@ -64,7 +64,7 @@ class DisciplineListSupport {
             return result
         }
         
-        return semesters.flatMap { it in
+        return semesters.map { it in
             completedMap[it.id] ?? [.emptySemester(it)]
         }
     }

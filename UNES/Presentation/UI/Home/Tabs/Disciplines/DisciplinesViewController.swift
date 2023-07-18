@@ -28,6 +28,7 @@ class DisciplinesViewController: UIViewController {
         view.contentInsetAdjustmentBehavior = .always
         view.delegate = self
         view.dataSource = self
+        view.register(DisciplineSemesterViewCell.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: DisciplineSemesterViewCell.identifier)
         view.register(DisciplineHeaderViewCell.self, forCellWithReuseIdentifier: DisciplineHeaderViewCell.identifier)
         view.register(DisciplineGroupNameViewCell.self, forCellWithReuseIdentifier: DisciplineGroupNameViewCell.identifier)
         view.register(DisciplineMeanViewCell.self, forCellWithReuseIdentifier: DisciplineMeanViewCell.identifier)
@@ -77,17 +78,34 @@ class DisciplinesViewController: UIViewController {
         let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(30))
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
         let section = NSCollectionLayoutSection(group: group)
+        section.boundarySupplementaryItems = [self.supplementaryHeaderItem()]
         return UICollectionViewCompositionalLayout(section: section)
+    }
+    
+    private func supplementaryHeaderItem() -> NSCollectionLayoutBoundarySupplementaryItem {
+        .init(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(56)),
+              elementKind: UICollectionView.elementKindSectionHeader,
+              alignment: .top)
     }
 }
 
 extension DisciplinesViewController: UICollectionViewDelegate, UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
         vm.disciplinesMapped.count
     }
     
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        vm.disciplinesMapped[section].count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: DisciplineSemesterViewCell.identifier, for: indexPath) as! DisciplineSemesterViewCell
+        header.setup(vm.allSemesters[indexPath.section])
+        return header
+    }
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let item = vm.disciplinesMapped[indexPath.row]
+        let item = vm.disciplinesMapped[indexPath.section][indexPath.item]
         switch(item) {
         case .header(let clazz):
             return bindHeaderCell(collectionView, item: clazz, atIndex: indexPath)
@@ -138,6 +156,7 @@ extension DisciplinesViewController: UICollectionViewDelegate, UICollectionViewD
     
     private func bindEmptySemesterCell(_ collectionView: UICollectionView, item: SemesterEntity, atIndex indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: EmptySemesterViewCell.identifier, for: indexPath) as! EmptySemesterViewCell
+        cell.setup(item)
         return cell
     }
     
