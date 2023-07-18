@@ -8,6 +8,7 @@
 import Combine
 import CoreData
 import Arcadia
+import FirebaseCrashlytics
 
 class LoginUseCase {
     func execute(username: String, password: String) -> AsyncThrowingStream<PortalAuthProgress, Error> {
@@ -50,6 +51,8 @@ class LoginUseCase {
                 } catch (let error) {
                     print("Failed with error \(error.localizedDescription)")
                     print(error)
+                    Crashlytics.crashlytics().log("Failed to run login")
+                    Crashlytics.crashlytics().record(error: error)
                     continuation.finish(throwing: error)
                 }
             }
