@@ -33,7 +33,7 @@ class HomeCoordinator : Coordinator {
         messages.tabBarItem = UITabBarItem(title: "Mensagens", image: .init(systemName: "envelope"), tag: 2)
         
         
-        let disciplines = UINavigationController(rootViewController: DisciplinesViewController())
+        let disciplines = UINavigationController(rootViewController: DisciplinesViewController(vm: DisciplinesViewModel()))
         disciplines.tabBarItem = UITabBarItem(title: "Disciplinas", image: .init(systemName: "book"), tag: 3)
         // list.bullet for more
         

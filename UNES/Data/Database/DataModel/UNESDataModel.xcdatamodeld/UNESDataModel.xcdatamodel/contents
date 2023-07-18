@@ -12,12 +12,12 @@
     </entity>
     <entity name="ClassEntity" representedClassName="ClassEntity" syncable="YES" codeGenerationType="class">
         <attribute name="disciplineId" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="finalScore" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="finalScore" optional="YES" attributeType="Double" defaultValueString="-1" usesScalarValueType="YES"/>
         <attribute name="id" attributeType="String"/>
         <attribute name="lastClass" optional="YES" attributeType="String"/>
         <attribute name="missedClasses" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="nextClass" optional="YES" attributeType="String"/>
-        <attribute name="partialScore" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="partialScore" optional="YES" attributeType="Double" defaultValueString="-1" usesScalarValueType="YES"/>
         <attribute name="scheduleOnly" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="semesterId" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="status" optional="YES" attributeType="String"/>

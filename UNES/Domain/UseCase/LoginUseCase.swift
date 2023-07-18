@@ -19,7 +19,6 @@ class LoginUseCase {
                     continuation.yield(.handshake)
                     
                     let person = try await arcadia.login().get()
-                    UNESPersistenceController.shared.saveAccess(username, password)
                     continuation.yield(.fetchedUser(person: person))
                     
                     let messages = try await arcadia.messages(forProfile: person.id).get()
@@ -32,7 +31,8 @@ class LoginUseCase {
                     try SemesterProcessor.process(semesters: semesters, withContext: context)
                     
                     continuation.yield(.fetchedSemesterInfo)
-                    if let currentSemester = semesters.max(by: { a, b in a.id > b.id }) {
+                    print(semesters)
+                    if let currentSemester = semesters.max(by: { $0.id < $1.id }) {
                         print("Current semester is \(currentSemester)")
                         let grades = try await arcadia.grades(forProfile: person.id, atSemester: currentSemester.id).get()
                         try DisciplineProcessor.process(
@@ -41,6 +41,7 @@ class LoginUseCase {
                             notifying: false,
                             withContext: context)
                         
+                        UNESPersistenceController.shared.saveAccess(username, password)
                         continuation.yield(.fetchedGrades)
                         continuation.finish()
                     } else {

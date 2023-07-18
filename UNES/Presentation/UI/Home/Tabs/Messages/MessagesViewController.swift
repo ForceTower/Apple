@@ -17,10 +17,7 @@ class MessagesViewControler: UIViewController {
     private var cancellables = Set<AnyCancellable>()
     
     lazy var collection: UICollectionView = {
-        let layout = MessageViewLayout()
-        layout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
-        layout.minimumInteritemSpacing = 0
-        
+        let layout = createLayout()
         let view = UICollectionView(frame: .zero, collectionViewLayout: layout)
         view.translatesAutoresizingMaskIntoConstraints = false
         view.register(MessageViewCell.self, forCellWithReuseIdentifier: MessageViewCell.identifier)
@@ -37,6 +34,7 @@ class MessagesViewControler: UIViewController {
     }
     
     override func viewDidLoad() {
+        UINavigationBar.appearance().isTranslucent = true
         vm.loadMessages()
         setupDataSource()
         setupViews()
@@ -67,6 +65,15 @@ class MessagesViewControler: UIViewController {
             collection.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             collection.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
         ])
+    }
+    
+    private func createLayout() -> UICollectionViewCompositionalLayout {
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(130))
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(130))
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
+        let section = NSCollectionLayoutSection(group: group)
+        return UICollectionViewCompositionalLayout(section: section)
     }
     
     private func setupDataSource() {

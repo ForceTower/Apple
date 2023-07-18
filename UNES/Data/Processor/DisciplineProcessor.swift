@@ -29,11 +29,11 @@ class DisciplineProcessor {
         var currentSemester: SemesterEntity?
         if allSemesters.allSatisfy({ entity in entity.start != nil }) {
             currentSemester = allSemesters.max { first, second in
-                first.start! > second.start!
+                first.start! < second.start!
             }
         } else {
             currentSemester = allSemesters.max(by: { first, second in
-                first.id > second.id
+                first.id < second.id
             })
         }
         

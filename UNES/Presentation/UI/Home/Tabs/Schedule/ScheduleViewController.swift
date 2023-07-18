@@ -61,9 +61,6 @@ class ScheduleViewController: UIViewController {
         scheduleBlockView.reloadData()
         
         let lines = vm.built.count / data.keys.count
-        NSLayoutConstraint.activate([
-            scheduleBlockView.heightAnchor.constraint(equalToConstant: CGFloat(72 * lines))
-        ])
     }
     
     private func setupDataSource() {
@@ -81,7 +78,8 @@ class ScheduleViewController: UIViewController {
     
     private func setupConstraints() {
         NSLayoutConstraint.activate([
-            scheduleBlockView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0),
+            scheduleBlockView.topAnchor.constraint(equalTo: view.topAnchor, constant: 0),
+            scheduleBlockView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0),
             scheduleBlockView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 8),
             scheduleBlockView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -24),
         ])

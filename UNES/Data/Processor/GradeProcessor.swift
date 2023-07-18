@@ -52,7 +52,7 @@ class GradeProcessor {
                     entity.groupingName = evaluation.name?.trimmingCharacters(in: .whitespaces) ?? "Notas"
                     entity.date = grade.date?.trimmingCharacters(in: .whitespaces)
                     
-                    clazz.grades?.adding(entity)
+                    entity.clazz = clazz
                 } else {
                     // Shouldn't be needed but swift doesnt like the if else statment :^)
                     let current = current!
