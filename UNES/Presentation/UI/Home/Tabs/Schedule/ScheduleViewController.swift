@@ -59,8 +59,6 @@ class ScheduleViewController: UIViewController {
             layout.itemsPerRow = data.keys.count
         }
         scheduleBlockView.reloadData()
-        
-        let lines = vm.built.count / data.keys.count
     }
     
     private func setupDataSource() {
