@@ -60,10 +60,10 @@ class MessagesViewControler: UIViewController {
     
     private func setupConstraints() {
         NSLayoutConstraint.activate([
-            collection.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            collection.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-            collection.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-            collection.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            collection.topAnchor.constraint(equalTo: view.topAnchor),
+            collection.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            collection.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            collection.trailingAnchor.constraint(equalTo: view.trailingAnchor),
         ])
     }
     
