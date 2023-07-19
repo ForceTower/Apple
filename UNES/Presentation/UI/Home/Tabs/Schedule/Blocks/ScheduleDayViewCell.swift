@@ -36,7 +36,7 @@ class ScheduleDayViewCell: UICollectionViewCell {
     
     private func setupConstraints() {
         NSLayoutConstraint.activate([
-            labelDay.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            labelDay.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -4),
             labelDay.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             labelDay.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
         ])

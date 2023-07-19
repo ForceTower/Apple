@@ -14,7 +14,7 @@ class MessageViewCell: UICollectionViewCell {
         let view = UIView()
         view.backgroundColor = .systemBackground
         view.layer.cornerRadius = 8
-        view.layer.shadowColor = UIColor.black.cgColor
+        view.layer.shadowColor = UIColor.systemGray.cgColor
         view.layer.shadowOpacity = 0.3
         view.layer.shadowOffset = .zero
         view.layer.shadowRadius = 2

@@ -7,22 +7,25 @@
 
 import Foundation
 
-protocol ProcessedClassLocation {}
+enum ProcessedClassLocation {
+    case empty
+    case element(ElementSpace)
+    case time(TimeSpace)
+    case day(DaySpace)
+}
 
-struct EmptySpace: ProcessedClassLocation {}
-
-struct ElementSpace: ProcessedClassLocation {
+struct ElementSpace {
     let location: ClassLocationEntity
 }
 
-struct TimeSpace: ProcessedClassLocation {
+struct TimeSpace {
     let start: String
     let end: String
     let startInt: Int
     let endInt: Int
 }
 
-struct DaySpace: ProcessedClassLocation {
+struct DaySpace {
     let day: String
     let dayInt: Int
 }
@@ -37,32 +40,32 @@ class ScheduleBlockSupport {
             .mapValues { values in
                 let dayList: [ProcessedClassLocation] = timers.map { timed in
                     if let location = values.first(where: { $0.startsAtInt == timed.start && $0.endsAtInt == timed.end }) {
-                        return ElementSpace(location: location)
+                        return .element(ElementSpace(location: location))
                     } else {
-                        return EmptySpace()
+                        return .empty
                     }
                 }
                 return dayList
             }
         
         result[-1] = timers.map { timed in
-            TimeSpace(start: timed.startString!, end: timed.endString!, startInt: timed.start, endInt: timed.end)
+            .time(TimeSpace(start: timed.startString!, end: timed.endString!, startInt: timed.start, endInt: timed.end))
         }
         
         return result
     }
     
-    static func buildDisplayList(_ data: [Int16: [ProcessedClassLocation]]) -> ([String: Int], [ProcessedClassLocation]) {
+    static func buildDisplayBlock(_ data: [Int16: [ProcessedClassLocation]]) -> ([String: Int], [ProcessedClassLocation]) {
         var disciplineColors = [String: Int]()
         var colorIndex = 0
         var result = [ProcessedClassLocation]()
         
         let referenceList = data[-1] ?? []
         
-        result.append(EmptySpace())
+        result.append(.empty)
         
         let daysHeader = data.keys.sorted { $0 < $1 }.filter { $0 != -1 }.map {
-            DaySpace(day: DisciplineProcessor.weekDayOf(Int($0)), dayInt: Int($0))
+            ProcessedClassLocation.day(DaySpace(day: DisciplineProcessor.weekDayOf(Int($0)), dayInt: Int($0)))
         }
         result.append(contentsOf: daysHeader)
         
@@ -72,7 +75,7 @@ class ScheduleBlockSupport {
             referenceMap.forEach { (_, value) in
                 let location = value[index]
                 result.append(location)
-                if let location = location as? ElementSpace,
+                if case ProcessedClassLocation.element(let location) = location,
                    let code = location.location.group?.clazz?.discipline?.code {
                     if disciplineColors[code] == nil {
                         disciplineColors[code] = colorIndex
@@ -83,6 +86,23 @@ class ScheduleBlockSupport {
         }
         
         return (disciplineColors, result)
+    }
+    
+    static func buildDisplayList(_ data: [Int16: [ProcessedClassLocation]]) -> [ProcessedClassLocation] {
+        let result = data
+            .filter { $0.key != -1 }
+            .sorted(by: { $0.key < $1.key })
+            .flatMap { (key, value) in
+            var list = value.filter { it in
+                if case ProcessedClassLocation.element(_) = it {
+                    return true
+                }
+                return false
+            }
+            list.insert(.day(DaySpace(day: DisciplineProcessor.longWeekDayOf(Int(key)), dayInt: Int(key))), at: 0)
+            return list
+        }
+        return result
     }
 }
 
