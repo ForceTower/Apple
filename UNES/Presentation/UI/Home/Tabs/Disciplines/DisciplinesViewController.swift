@@ -41,6 +41,7 @@ class DisciplinesViewController: UIViewController {
     
     override func viewDidLoad() {
         vm.fetchData()
+        vm.registerListener()
         setupViews()
         setupConstraints()
         observe()

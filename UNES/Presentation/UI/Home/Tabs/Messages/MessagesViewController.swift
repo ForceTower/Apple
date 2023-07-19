@@ -35,6 +35,7 @@ class MessagesViewControler: UIViewController {
     
     override func viewDidLoad() {
         UINavigationBar.appearance().isTranslucent = true
+        vm.registerListener()
         vm.loadMessages()
         setupDataSource()
         setupViews()
