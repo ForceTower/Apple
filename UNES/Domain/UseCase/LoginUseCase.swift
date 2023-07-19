@@ -23,7 +23,7 @@ class LoginUseCase {
                     continuation.yield(.fetchedUser(person: person))
                     
                     let messages = try await arcadia.messages(forProfile: person.id).get()
-                    UNESPersistenceController.shared.save(messages: messages.messages)
+                    UNESPersistenceController.shared.save(messages: messages.messages, markingNotified: true)
                     continuation.yield(.fetchedMessages)
                     
                     let semesters = try await arcadia.semesters(forProfile: person.id).get()
@@ -39,7 +39,7 @@ class LoginUseCase {
                         try DisciplineProcessor.process(
                             disciplines: grades,
                             atSemester: Int64(currentSemester.id),
-                            notifying: false,
+                            markNotified: true,
                             withContext: context)
                         
                         UNESPersistenceController.shared.saveAccess(username, password)

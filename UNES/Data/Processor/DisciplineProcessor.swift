@@ -23,7 +23,7 @@ fileprivate struct LocalClassLocation {
 }
 
 class DisciplineProcessor {
-    static func process(disciplines: [DisciplineData], atSemester semesterId: Int64, notifying notify: Bool, withContext context: NSManagedObjectContext) throws {
+    static func process(disciplines: [DisciplineData], atSemester semesterId: Int64, markNotified: Bool, withContext context: NSManagedObjectContext) throws {
         let allSemesters = try context.fetch(SemesterEntity.fetchRequest())
         
         var currentSemester: SemesterEntity?
@@ -105,7 +105,7 @@ class DisciplineProcessor {
                     }
                     // Lecture processing! Pog
                 }
-                try GradeProcessor.process(evaluations: it.evaluations, forClass: bound, notifying: notify, withContext: context, saveAfterChanges: false)
+                try GradeProcessor.process(evaluations: it.evaluations, forClass: bound, markNotified: markNotified, withContext: context, saveAfterChanges: false)
             }
         }
         

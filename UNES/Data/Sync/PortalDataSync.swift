@@ -22,7 +22,8 @@ class PortalDataSync {
             let person = try await arcadia.login().get()
             
             let messages = try await arcadia.messages(forProfile: person.id).get()
-            UNESPersistenceController.shared.save(messages: messages.messages)
+            let new = UNESPersistenceController.shared.save(messages: messages.messages, markingNotified: true)
+            notifyMessages(new, context: context)
             
             let semesters = try await arcadia.semesters(forProfile: person.id).get()
             try SemesterProcessor.process(semesters: semesters, withContext: context)
@@ -32,8 +33,9 @@ class PortalDataSync {
                 try DisciplineProcessor.process(
                     disciplines: grades,
                     atSemester: Int64(currentSemester.id),
-                    notifying: false,
+                    markNotified: false,
                     withContext: context)
+                notifyGrades(context: context)
             }
             return true
         } catch (let error) {
@@ -52,5 +54,22 @@ class PortalDataSync {
     
     private func onAuthenticationFailed(context: NSManagedObjectContext) {
         try? UNESPersistenceController.shared.deleteAll(context: context)
+    }
+    
+    private func notifyMessages(_ messages: [MessageEntity], context: NSManagedObjectContext) {
+        messages.forEach { message in
+            NotificationManager.shared.createNotification(forMessage: message)
+        }
+        try? context.save()
+    }
+    
+    private func notifyGrades(context: NSManagedObjectContext) {
+        let request = GradeEntity.fetchRequest()
+        request.predicate = NSPredicate(format: "notified != %@", 0)
+        let grades = (try? context.fetch(request)) ?? []
+        grades.forEach { grade in
+            NotificationManager.shared.createNotification(forGrade: grade)
+        }
+        try? context.save()
     }
 }

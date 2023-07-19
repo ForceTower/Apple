@@ -40,6 +40,7 @@ class ScheduleViewController: UIViewController {
         setupConstraints()
         fetchData()
         observe()
+        NotificationManager.shared.requestPermission()
     }
     
     private func fetchData() {

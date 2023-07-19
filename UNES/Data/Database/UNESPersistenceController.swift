@@ -39,9 +39,12 @@ class UNESPersistenceController {
         try? context.save()
     }
     
-    func save(messages: [Message], markingNotified notified: Bool = false) {
+    @discardableResult
+    func save(messages: [Message], markingNotified notified: Bool = false) -> [MessageEntity] {
         let context = UNESPersistenceController.shared.container.newBackgroundContext()
-        context.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
+        
+        let current = (try? context.fetch(MessageEntity.fetchRequest())) ?? []
+        var result = [MessageEntity]()
         
         messages.forEach { message in
             let entity = MessageEntity(context: context)
@@ -56,9 +59,15 @@ class UNESPersistenceController {
             entity.hashMessage = Int64(message.content.replacingOccurrences(of: "\\n", with: "\n").lowercased().hash)
             entity.discipline = message.discipline?.discipline
             entity.codeDiscipline = message.discipline?.code
+            
+            if current.firstIndex(where: { $0.id == message.id }) == nil {
+                result.append(entity)
+            }
         }
         
         try? context.save()
+        
+        return result
     }
     
     func deleteAll(context: NSManagedObjectContext) throws {

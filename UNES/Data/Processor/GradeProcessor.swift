@@ -13,7 +13,7 @@ class GradeProcessor {
     static func process(
         evaluations: [ClassEvaluation],
         forClass clazz: ClassEntity,
-        notifying notify: Bool,
+        markNotified: Bool,
         withContext context: NSManagedObjectContext,
         saveAfterChanges save: Bool
     ) throws {
@@ -34,6 +34,10 @@ class GradeProcessor {
                     print("It's a new grade")
                     var notified = 1
                     if grade.value != nil { notified = 3 }
+                    
+                    if markNotified {
+                        notified = 0
+                    }
                     
                     let entity = GradeEntity(context: context)
                     entity.classId = classId
@@ -56,7 +60,6 @@ class GradeProcessor {
                 } else {
                     // Shouldn't be needed but swift doesnt like the if else statment :^)
                     let current = current!
-                    var shouldUpdate = true
                     print("Updating existing grade.")
                     var score = ""
                     if let grade = grade.value { score = String(grade) }
@@ -73,17 +76,15 @@ class GradeProcessor {
                         current.notified = 2
                         current.date = grade.date?.trimmingCharacters(in: .whitespaces)
                     } else {
-                        shouldUpdate = false
                         print("No changes detected between updates at \(current.name ?? "unamed") \(current.grouping ?? "...") and \(grade.name) \(evaluation.name?.hash ?? 0)")
                     }
                     
                     if current.groupingName != evaluation.name {
-                        shouldUpdate = true
                         current.groupingName = evaluation.name?.trimmingCharacters(in: .whitespaces) ?? "Notas"
                     }
                     
                     // This is a tricky condition and i'm half a sleep
-                    if !notify && shouldUpdate {
+                    if markNotified {
                         current.notified = 0
                     }
                 }
