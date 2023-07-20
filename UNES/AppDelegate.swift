@@ -37,7 +37,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func scheduleAppRefresh() {
         let request = BGAppRefreshTaskRequest(identifier: "dev.forcetower.unes.apprefresh")
-        request.earliestBeginDate = Date(timeIntervalSinceNow: 60 * 60) // 1h delay
+        request.earliestBeginDate = Date(timeIntervalSinceNow: 15 * 60)
         do {
             try BGTaskScheduler.shared.submit(request)
             print("Scheduled task")
