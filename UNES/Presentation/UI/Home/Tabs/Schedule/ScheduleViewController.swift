@@ -18,6 +18,7 @@ class ScheduleViewController: UIViewController {
         let view = UICollectionView(frame: .zero, collectionViewLayout: layout)
         view.translatesAutoresizingMaskIntoConstraints = false
         view.contentInsetAdjustmentBehavior = .always
+        view.register(ScheduleLineFooter.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: ScheduleLineFooter.identifier)
         view.register(ScheduleBlockViewCell.self, forCellWithReuseIdentifier: ScheduleBlockViewCell.identifier)
         view.register(ScheduleDayViewCell.self, forCellWithReuseIdentifier: ScheduleDayViewCell.identifier)
         view.register(ScheduleEmptyViewCell.self, forCellWithReuseIdentifier: ScheduleEmptyViewCell.identifier)
@@ -107,9 +108,16 @@ class ScheduleViewController: UIViewController {
                 let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(50))
                 let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
                 let section = NSCollectionLayoutSection(group: group)
+                section.boundarySupplementaryItems = [self.supplementaryHeaderItem()]
                 return section
             }
         }
+    }
+    
+    private func supplementaryHeaderItem() -> NSCollectionLayoutBoundarySupplementaryItem {
+        .init(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(36)),
+              elementKind: UICollectionView.elementKindSectionFooter,
+              alignment: .bottomTrailing)
     }
     
     private func updateBlockSchedule(_ data: [Int16: [ProcessedClassLocation]]) {
@@ -159,7 +167,6 @@ extension ScheduleViewController: UICollectionViewDelegate, UICollectionViewData
         case .list(let items):
             return items.count
         }
-//        return vm.sections[section].count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -232,5 +239,12 @@ extension ScheduleViewController: UICollectionViewDelegate, UICollectionViewData
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ScheduleTimeViewCell.identifier, for: indexPath) as! ScheduleTimeViewCell
         cell.bind(item)
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        let value = UserDefaults.standard.object(forKey: "last_sync") as? Date
+        let footer = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: ScheduleLineFooter.identifier, for: indexPath) as! ScheduleLineFooter
+        footer.setup(value)
+        return footer
     }
 }
