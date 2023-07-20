@@ -13,11 +13,11 @@ import FirebaseCrashlytics
 class PortalDataSync {
     func update(
         username: String,
-        password: String,
-        context: NSManagedObjectContext
+        password: String
     ) async -> Bool {
         let arcadia = Arcadia(username: username, password: password)
         do {
+            let context = UNESPersistenceController.shared.container.newBackgroundContext()
             context.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
             let person = try await arcadia.login().get()
             
@@ -44,7 +44,7 @@ class PortalDataSync {
             
             if let error = error.asAFError, let code = error.responseCode {
                 if code == 401 {
-                    onAuthenticationFailed(context: context)
+                    onAuthenticationFailed()
                 }
             }
             
@@ -52,8 +52,8 @@ class PortalDataSync {
         }
     }
     
-    private func onAuthenticationFailed(context: NSManagedObjectContext) {
-        try? UNESPersistenceController.shared.deleteAll(context: context)
+    private func onAuthenticationFailed() {
+        try? UNESPersistenceController.shared.deleteAll()
     }
     
     private func notifyMessages(_ messages: [MessageEntity], context: NSManagedObjectContext) {

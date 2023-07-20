@@ -28,10 +28,10 @@ class ScheduleViewController: UIViewController {
         return view
     }()
     
-//    private lazy var refreshControl: UIRefreshControl = {
-//        let control = UIRefreshControl()
-//        return control
-//    }()
+    private lazy var refreshControl: UIRefreshControl = {
+        let control = UIRefreshControl()
+        return control
+    }()
     
     init(vm: ScheduleViewModel) {
         self.vm = vm
@@ -64,16 +64,16 @@ class ScheduleViewController: UIViewController {
             }
             .store(in: &cancellables)
         
-//        vm.$refreshing
-//            .receive(on: DispatchQueue.main)
-//            .sink { [weak self] value in
-//                if value {
-//                    self?.refreshControl.beginRefreshing()
-//                } else {
-//                    self?.refreshControl.endRefreshing()
-//                }
-//            }
-//            .store(in: &cancellables)
+        vm.$refreshing
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] value in
+                if value {
+                    self?.refreshControl.beginRefreshing()
+                } else {
+                    self?.refreshControl.endRefreshing()
+                }
+            }
+            .store(in: &cancellables)
     }
     
 
@@ -136,8 +136,8 @@ class ScheduleViewController: UIViewController {
         navigationController?.navigationBar.prefersLargeTitles = true
         
         view.addSubview(scheduleBlockView)
-//        scheduleBlockView.refreshControl = refreshControl
-//        refreshControl.addTarget(self, action: #selector(startRefresh), for: .valueChanged)
+        scheduleBlockView.refreshControl = refreshControl
+        refreshControl.addTarget(self, action: #selector(startRefresh), for: .valueChanged)
     }
     
     private func setupConstraints() {

@@ -68,7 +68,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             scheduleAppRefresh()
             fetchTask = Task {
                 UserDefaults.standard.set(Date(), forKey: "last_sync")
-                let result = await PortalDataSync().update(username: username, password: password, context: context)
+                let result = await PortalDataSync().update(username: username, password: password)
                 Analytics.logEvent("app_background_fetch_complete", parameters: nil)
                 task.setTaskCompleted(success: result)
             }

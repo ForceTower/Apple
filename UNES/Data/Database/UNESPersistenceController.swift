@@ -70,7 +70,8 @@ class UNESPersistenceController {
         return result
     }
     
-    func deleteAll(context: NSManagedObjectContext) throws {
+    func deleteAll() throws {
+        let context = container.newBackgroundContext()
         let _ = try context.execute(NSBatchDeleteRequest(fetchRequest: AccessEntity.fetchRequest()))
         let _ = try context.execute(NSBatchDeleteRequest(fetchRequest: ClassEntity.fetchRequest()))
         let _ = try context.execute(NSBatchDeleteRequest(fetchRequest: ClassGroupEntity.fetchRequest()))

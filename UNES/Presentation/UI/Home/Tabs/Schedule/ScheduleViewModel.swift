@@ -67,7 +67,7 @@ class ScheduleViewModel {
             }
             refreshing = true
             Task {
-                let result = await PortalDataSync().update(username: username, password: password, context: context)
+                let result = await PortalDataSync().update(username: username, password: password)
                 print("Finished executing \(result)")
                 DispatchQueue.main.async { [weak self] in
                     self?.refreshing = false
