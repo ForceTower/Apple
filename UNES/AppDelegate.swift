@@ -8,6 +8,7 @@
 import UIKit
 import CoreData
 import FirebaseCore
+import FirebaseAnalytics
 import FirebaseCrashlytics
 import BackgroundTasks
 
@@ -15,6 +16,9 @@ import BackgroundTasks
 class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         FirebaseApp.configure()
+#if DEBUG
+        Crashlytics.crashlytics().setCrashlyticsCollectionEnabled(false)
+#endif
         
         BGTaskScheduler.shared.register(forTaskWithIdentifier: "dev.forcetower.unes.apprefresh", using: nil) { task in
             self.handleAppRefresh(task as! BGAppRefreshTask)
@@ -49,8 +53,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     private func handleAppRefresh(_ task: BGAppRefreshTask) {
+        Analytics.logEvent("app_background_fetch", parameters: ["at": Date().timeIntervalSince1970])
         var fetchTask: Task<Void, Never>? = nil
-        
         do {
             let context = UNESPersistenceController.shared.container.newBackgroundContext()
             let access = try context.fetch(AccessEntity.fetchRequest()).first
