@@ -53,7 +53,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     private func handleAppRefresh(_ task: BGAppRefreshTask) {
-        Analytics.logEvent("app_background_fetch", parameters: ["at": Date().timeIntervalSince1970])
+        Analytics.logEvent("app_background_fetch", parameters: nil)
         var fetchTask: Task<Void, Never>? = nil
         do {
             let context = UNESPersistenceController.shared.container.newBackgroundContext()
@@ -61,6 +61,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             guard let access = access,
                   let username = access.username,
                   let password = access.password else {
+                Analytics.logEvent("app_background_fetch_complete", parameters: nil)
                 return
             }
             
@@ -68,15 +69,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             fetchTask = Task {
                 UserDefaults.standard.set(Date(), forKey: "last_sync")
                 let result = await PortalDataSync().update(username: username, password: password, context: context)
+                Analytics.logEvent("app_background_fetch_complete", parameters: nil)
                 task.setTaskCompleted(success: result)
             }
         } catch (let error) {
+            Analytics.logEvent("app_background_fetch_failed", parameters: nil)
             Crashlytics.crashlytics().log("Failed to run app refresh")
             Crashlytics.crashlytics().record(error: error)
             scheduleAppRefresh()
         }
         
         task.expirationHandler = {
+            Analytics.logEvent("app_background_fetch_canceled", parameters: nil)
             fetchTask?.cancel()
         }
     }
