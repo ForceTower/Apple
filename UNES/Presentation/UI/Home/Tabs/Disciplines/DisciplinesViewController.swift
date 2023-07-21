@@ -88,6 +88,13 @@ class DisciplinesViewController: UIViewController {
               elementKind: UICollectionView.elementKindSectionHeader,
               alignment: .top)
     }
+    
+    private func navigateToClass(_ clazz: ClassEntity) {
+        if let group = clazz.groups?.allObjects.first as? ClassGroupEntity {
+            let vc = DisciplineDetailsViewController(vm: DisciplineDetailsViewModel(classId: group.id))
+            navigationController?.pushViewController(vc, animated: true)
+        }
+    }
 }
 
 extension DisciplinesViewController: UICollectionViewDelegate, UICollectionViewDataSource {
@@ -103,6 +110,26 @@ extension DisciplinesViewController: UICollectionViewDelegate, UICollectionViewD
         let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: DisciplineSemesterViewCell.identifier, for: indexPath) as! DisciplineSemesterViewCell
         header.setup(vm.allSemesters[indexPath.section])
         return header
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let item = vm.disciplinesMapped[indexPath.section][indexPath.item]
+        switch(item) {
+        case .header(let clazz):
+            navigateToClass(clazz)
+        case .score(let clazz, _):
+            navigateToClass(clazz)
+        case .final(let clazz):
+            navigateToClass(clazz)
+        case .mean(let clazz):
+            navigateToClass(clazz)
+        case .groupName(let clazz, _):
+            navigateToClass(clazz)
+        case .emptySemester(let semester):
+            vm.loadSemester(semester)
+        case .divider:
+            print("do nothing :)")
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

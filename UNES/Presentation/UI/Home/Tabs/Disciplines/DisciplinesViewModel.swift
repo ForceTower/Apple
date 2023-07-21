@@ -29,6 +29,10 @@ class DisciplinesViewModel {
         allSemesters = (semesters ?? []).sorted { $0.id > $1.id }
     }
     
+    func loadSemester(_ semester: SemesterEntity) {
+        
+    }
+    
     @objc func contextObjectsDidSave(_notification: Notification) {
         fetchData()
     }
