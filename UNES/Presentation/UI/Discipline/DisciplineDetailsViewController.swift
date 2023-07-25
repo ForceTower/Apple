@@ -124,12 +124,23 @@ class DisciplineDetailsViewController: UIViewController {
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
+    
+    private lazy var viewPager: DisciplineDetailsContentView = {
+        let view = DisciplineDetailsContentView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        vm.fetchData()
         setupViews()
         setupConstraints()
         observe()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        vm.setup()
     }
     
     private func setupViews() {
@@ -137,6 +148,7 @@ class DisciplineDetailsViewController: UIViewController {
         title = "Detalhes"
         
         view.addSubview(card)
+        view.addSubview(viewPager)
         card.addSubview(nameLbl)
         card.addSubview(departmentLbl)
         card.addSubview(missesLeftLbl)
@@ -181,7 +193,7 @@ class DisciplineDetailsViewController: UIViewController {
             clockImg.topAnchor.constraint(equalTo: infoDiv.topAnchor),
             clockImg.bottomAnchor.constraint(equalTo: infoDiv.bottomAnchor),
             
-            stack.leadingAnchor.constraint(equalTo: infoDiv.trailingAnchor, constant: 8),
+            stack.leadingAnchor.constraint(equalTo: infoDiv.trailingAnchor, constant: 12),
             stack.topAnchor.constraint(equalTo: infoDiv.topAnchor, constant: 4),
             stack.bottomAnchor.constraint(equalTo: infoDiv.bottomAnchor),
             
@@ -193,7 +205,12 @@ class DisciplineDetailsViewController: UIViewController {
             missedClassesLbl.topAnchor.constraint(equalTo: helperView.topAnchor),
             missedClassesLbl.bottomAnchor.constraint(equalTo: helperView.bottomAnchor),
             
-            card.bottomAnchor.constraint(equalTo: infoDiv.bottomAnchor, constant: 16)
+            card.bottomAnchor.constraint(equalTo: infoDiv.bottomAnchor, constant: 16),
+            
+            viewPager.topAnchor.constraint(equalTo: card.bottomAnchor),
+            viewPager.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            viewPager.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            viewPager.trailingAnchor.constraint(equalTo: view.trailingAnchor),
         ])
     }
     
@@ -206,10 +223,28 @@ class DisciplineDetailsViewController: UIViewController {
     }
     
     private func setupWithGroup(_ group: ClassGroupEntity?) {
-        nameLbl.text = group?.clazz?.discipline?.name ?? "Metodologia do Trabalho Científico da Engenharia de Computação"
-        departmentLbl.text = group?.clazz?.discipline?.department ?? "Departamento de Tecnologia"
-        missesLeftLbl.text = "Ainda restam 15 faltas"
-        hoursLbl.text = "60h"
-        missedClassesLbl.text = "8"
+        let credits = group?.credits
+        let missed = group?.clazz?.missedClasses
+        nameLbl.text = group?.clazz?.discipline?.name?.localizedCapitalized
+        departmentLbl.text = group?.clazz?.discipline?.department?.localizedCapitalized
+        
+        if let missed = missed, let credits = credits {
+            let left = (credits / 4) - missed
+            missesLeftLbl.text = "Ainda restam \(left) faltas"
+        } else {
+            missesLeftLbl.text = "Nao dá para saber quantas faltas restam..."
+        }
+        if let credits = credits {
+            hoursLbl.text = "\(credits)h"
+        }
+        if let missed = missed {
+            missedClassesLbl.text = "\(missed)"
+        }
+        viewPager.setup(group)
+    }
+    
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        vm.onClose()
     }
 }

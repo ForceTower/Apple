@@ -16,6 +16,7 @@
 		6C4F65C22A642F76009C84CA /* ColumnFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C4F65C12A642F76009C84CA /* ColumnFlowLayout.swift */; };
 		6C76BABF2A69FBEB00190E78 /* DisciplineDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C76BABE2A69FBEB00190E78 /* DisciplineDetailsViewController.swift */; };
 		6C76BAC12A6A014C00190E78 /* DisciplineDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C76BAC02A6A014C00190E78 /* DisciplineDetailsViewModel.swift */; };
+		6C76BAC32A6C5B3E00190E78 /* DisciplineDetailsContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C76BAC22A6C5B3E00190E78 /* DisciplineDetailsContentView.swift */; };
 		6C972EF62A63859D00D681CE /* GradeProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C972EF52A63859D00D681CE /* GradeProcessor.swift */; };
 		6CACE7B02A59FFBC001117A6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CACE7AF2A59FFBC001117A6 /* AppDelegate.swift */; };
 		6CACE7B22A59FFBC001117A6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CACE7B12A59FFBC001117A6 /* SceneDelegate.swift */; };
@@ -92,6 +93,7 @@
 		6C4F65C12A642F76009C84CA /* ColumnFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColumnFlowLayout.swift; sourceTree = "<group>"; };
 		6C76BABE2A69FBEB00190E78 /* DisciplineDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisciplineDetailsViewController.swift; sourceTree = "<group>"; };
 		6C76BAC02A6A014C00190E78 /* DisciplineDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisciplineDetailsViewModel.swift; sourceTree = "<group>"; };
+		6C76BAC22A6C5B3E00190E78 /* DisciplineDetailsContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisciplineDetailsContentView.swift; sourceTree = "<group>"; };
 		6C972EF52A63859D00D681CE /* GradeProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradeProcessor.swift; sourceTree = "<group>"; };
 		6CACE7AC2A59FFBC001117A6 /* UNES.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UNES.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6CACE7AF2A59FFBC001117A6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -201,6 +203,7 @@
 			children = (
 				6C76BABE2A69FBEB00190E78 /* DisciplineDetailsViewController.swift */,
 				6C76BAC02A6A014C00190E78 /* DisciplineDetailsViewModel.swift */,
+				6C76BAC22A6C5B3E00190E78 /* DisciplineDetailsContentView.swift */,
 			);
 			path = Discipline;
 			sourceTree = "<group>";
@@ -669,6 +672,7 @@
 				6C76BABF2A69FBEB00190E78 /* DisciplineDetailsViewController.swift in Sources */,
 				6CACE7B02A59FFBC001117A6 /* AppDelegate.swift in Sources */,
 				6CD09AB82A6485B60043E20D /* DisciplineColors.swift in Sources */,
+				6C76BAC32A6C5B3E00190E78 /* DisciplineDetailsContentView.swift in Sources */,
 				6CD09ABC2A6488D80043E20D /* ScheduleEmptyViewCell.swift in Sources */,
 				6CD09AD72A65E52C0043E20D /* DisciplinesViewModel.swift in Sources */,
 				6CEA64AF2A6352E3009F786E /* MessageViewLayout.swift in Sources */,
