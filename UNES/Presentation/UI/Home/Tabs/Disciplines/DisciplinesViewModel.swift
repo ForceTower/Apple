@@ -42,6 +42,9 @@ class DisciplinesViewModel {
         
         semesterTask = Task {
             await fetchSemester.execute(forSemesterId: semester.id)
+            DispatchQueue.main.async { [weak self] in
+                self?.fetchData()
+            }
         }
     }
     

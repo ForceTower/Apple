@@ -41,13 +41,13 @@ class EmptySemesterViewCell: UICollectionViewCell {
                 let index = name.index(name.startIndex, offsetBy: 4)
                 if name[index] != "." {
                     let value = "\(name.prefix(upTo: index)).\(name.suffix(from: index))"
-                    nameLbl.text = "As disciplinas do semestre \(value) ainda não foram baixadas.\nIsso tem impacto direto no score calculado."
+                    nameLbl.text = "As disciplinas do semestre \(value) ainda não foram baixadas.\nIsso tem impacto direto no score calculado.\nClique aqui para baixar"
                     return
                 }
             }
-            nameLbl.text = "As disciplinas do semestre \(name) ainda não foram baixadas.\nIsso tem impacto direto no score calculado."
+            nameLbl.text = "As disciplinas do semestre \(name) ainda não foram baixadas.\nIsso tem impacto direto no score calculado.\nClique aqui para baixar"
         } else {
-            nameLbl.text = "As disciplinas deste semestre ainda não foram baixadas.\nIsso tem impacto direto no score calculado."
+            nameLbl.text = "As disciplinas deste semestre ainda não foram baixadas.\nIsso tem impacto direto no score calculado.\nClique aqui para baixar"
         }
     }
     
