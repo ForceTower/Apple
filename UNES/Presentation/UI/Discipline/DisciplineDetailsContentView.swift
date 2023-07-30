@@ -8,6 +8,8 @@
 import UIKit
 
 class DisciplineDetailsContentView : UIView {
+    var delegate: DisciplineDetailsActionsDelegate? = nil
+    
     private let scrollView: UIScrollView = {
         let view = UIScrollView()
         view.isPagingEnabled = true
@@ -67,7 +69,7 @@ class DisciplineDetailsContentView : UIView {
     private let materialsBtn: UIButton = {
         let btn = UIButton()
         btn.configuration = .gray()
-        btn.configuration?.title = "Ver materiais"
+        btn.configuration?.title = "Ver materiais postados"
         btn.translatesAutoresizingMaskIntoConstraints = false
         return btn
     }()
@@ -105,6 +107,12 @@ class DisciplineDetailsContentView : UIView {
         content.addSubview(materialsBtn)
         programView.addSubview(disciplineProgramTitle)
         programView.addSubview(disciplineProgram)
+        
+        materialsBtn.addTarget(self, action: #selector(onMaterialsBtnClick), for: .touchUpInside)
+    }
+    
+    @objc func onMaterialsBtnClick() {
+        delegate?.onNavigateToMaterials()
     }
     
     private func setupConstraints() {

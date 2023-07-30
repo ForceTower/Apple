@@ -103,7 +103,7 @@ class DisciplineProcessor {
                             )
                         }
                     }
-                    // Lecture processing! Pog
+                    try LectureProcessor.process(groupId: group.id, lectures: clazz.lectures, withContext: context)
                 }
                 try GradeProcessor.process(evaluations: it.evaluations, forClass: bound, markNotified: markNotified, withContext: context, saveAfterChanges: false)
             }

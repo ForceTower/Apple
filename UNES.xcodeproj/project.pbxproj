@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6C0EAEDE2A75D9AE0008AF03 /* FetchDisciplineDetailsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C0EAEDD2A75D9AE0008AF03 /* FetchDisciplineDetailsUseCase.swift */; };
+		6C0EAEE02A75E6F90008AF03 /* FetchSemesterUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C0EAEDF2A75E6F90008AF03 /* FetchSemesterUseCase.swift */; };
 		6C4058DC2A638A99004F5174 /* Grade+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C4058DB2A638A99004F5174 /* Grade+Extensions.swift */; };
 		6C4EC8E52A698C2000EF4147 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 6C4EC8E42A698C2000EF4147 /* FirebaseAnalytics */; };
 		6C4F65B82A641355009C84CA /* ScheduleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C4F65B72A641355009C84CA /* ScheduleViewModel.swift */; };
@@ -28,6 +30,9 @@
 		6CACE7D72A5A0E47001117A6 /* WelcomeAppViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CACE7D62A5A0E47001117A6 /* WelcomeAppViewController.swift */; };
 		6CACE7D92A5A1174001117A6 /* WelcomeAppViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CACE7D82A5A1174001117A6 /* WelcomeAppViewModel.swift */; };
 		6CACE7DC2A5A3DFB001117A6 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CACE7DB2A5A3DFB001117A6 /* LoginViewController.swift */; };
+		6CAD03472A75C21F00403716 /* DisciplineMaterialsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CAD03462A75C21F00403716 /* DisciplineMaterialsViewController.swift */; };
+		6CAD03492A75C2D800403716 /* DisciplineMaterialsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CAD03482A75C2D800403716 /* DisciplineMaterialsViewModel.swift */; };
+		6CAD034B2A75C8B600403716 /* DisciplineMaterialViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CAD034A2A75C8B600403716 /* DisciplineMaterialViewCell.swift */; };
 		6CBCCD852A5B5933004A984B /* AuthCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CBCCD842A5B5933004A984B /* AuthCoordinator.swift */; };
 		6CBCCD872A5B5A24004A984B /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CBCCD862A5B5A24004A984B /* LoginViewModel.swift */; };
 		6CBCCD952A5E1FB4004A984B /* Arcadia in Frameworks */ = {isa = PBXBuildFile; productRef = 6CBCCD942A5E1FB4004A984B /* Arcadia */; };
@@ -81,9 +86,13 @@
 		6CEA64B62A63711C009F786E /* PersonProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CEA64B52A63711C009F786E /* PersonProcessor.swift */; };
 		6CEA64B82A6373BE009F786E /* SemesterProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CEA64B72A6373BE009F786E /* SemesterProcessor.swift */; };
 		6CEA64BA2A6375BD009F786E /* DisciplineProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CEA64B92A6375BD009F786E /* DisciplineProcessor.swift */; };
+		6CFAB8032A75D192005B7BB5 /* DisciplineDetailsActionsDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CFAB8022A75D192005B7BB5 /* DisciplineDetailsActionsDelegate.swift */; };
+		6CFAB8052A75D371005B7BB5 /* LectureProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CFAB8042A75D371005B7BB5 /* LectureProcessor.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6C0EAEDD2A75D9AE0008AF03 /* FetchDisciplineDetailsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchDisciplineDetailsUseCase.swift; sourceTree = "<group>"; };
+		6C0EAEDF2A75E6F90008AF03 /* FetchSemesterUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchSemesterUseCase.swift; sourceTree = "<group>"; };
 		6C13FF232A6453E200405090 /* UNES.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = UNES.entitlements; sourceTree = "<group>"; };
 		6C4058DB2A638A99004F5174 /* Grade+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Grade+Extensions.swift"; sourceTree = "<group>"; };
 		6C4F65B72A641355009C84CA /* ScheduleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleViewModel.swift; sourceTree = "<group>"; };
@@ -107,6 +116,9 @@
 		6CACE7D62A5A0E47001117A6 /* WelcomeAppViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeAppViewController.swift; sourceTree = "<group>"; };
 		6CACE7D82A5A1174001117A6 /* WelcomeAppViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeAppViewModel.swift; sourceTree = "<group>"; };
 		6CACE7DB2A5A3DFB001117A6 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		6CAD03462A75C21F00403716 /* DisciplineMaterialsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisciplineMaterialsViewController.swift; sourceTree = "<group>"; };
+		6CAD03482A75C2D800403716 /* DisciplineMaterialsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisciplineMaterialsViewModel.swift; sourceTree = "<group>"; };
+		6CAD034A2A75C8B600403716 /* DisciplineMaterialViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisciplineMaterialViewCell.swift; sourceTree = "<group>"; };
 		6CBCCD842A5B5933004A984B /* AuthCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthCoordinator.swift; sourceTree = "<group>"; };
 		6CBCCD862A5B5A24004A984B /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		6CBCCD902A5E1997004A984B /* Arcadia */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = Arcadia; path = ../Arcadia; sourceTree = "<group>"; };
@@ -152,6 +164,8 @@
 		6CEA64B52A63711C009F786E /* PersonProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonProcessor.swift; sourceTree = "<group>"; };
 		6CEA64B72A6373BE009F786E /* SemesterProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SemesterProcessor.swift; sourceTree = "<group>"; };
 		6CEA64B92A6375BD009F786E /* DisciplineProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisciplineProcessor.swift; sourceTree = "<group>"; };
+		6CFAB8022A75D192005B7BB5 /* DisciplineDetailsActionsDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisciplineDetailsActionsDelegate.swift; sourceTree = "<group>"; };
+		6CFAB8042A75D371005B7BB5 /* LectureProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LectureProcessor.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -204,6 +218,7 @@
 				6C76BABE2A69FBEB00190E78 /* DisciplineDetailsViewController.swift */,
 				6C76BAC02A6A014C00190E78 /* DisciplineDetailsViewModel.swift */,
 				6C76BAC22A6C5B3E00190E78 /* DisciplineDetailsContentView.swift */,
+				6CFAB8022A75D192005B7BB5 /* DisciplineDetailsActionsDelegate.swift */,
 			);
 			path = Discipline;
 			sourceTree = "<group>";
@@ -278,6 +293,7 @@
 		6CACE7CA2A5A0BB7001117A6 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				6CAD03452A75C1FB00403716 /* DisciplineMaterials */,
 				6C76BABD2A69FBBF00190E78 /* Discipline */,
 				6CEA649B2A632713009F786E /* Home */,
 				6CACE7CB2A5A0BD0001117A6 /* Auth */,
@@ -323,6 +339,16 @@
 			path = Login;
 			sourceTree = "<group>";
 		};
+		6CAD03452A75C1FB00403716 /* DisciplineMaterials */ = {
+			isa = PBXGroup;
+			children = (
+				6CAD03462A75C21F00403716 /* DisciplineMaterialsViewController.swift */,
+				6CAD03482A75C2D800403716 /* DisciplineMaterialsViewModel.swift */,
+				6CAD034A2A75C8B600403716 /* DisciplineMaterialViewCell.swift */,
+			);
+			path = DisciplineMaterials;
+			sourceTree = "<group>";
+		};
 		6CBCCD8A2A5B7D0C004A984B /* Components */ = {
 			isa = PBXGroup;
 			children = (
@@ -358,6 +384,8 @@
 			isa = PBXGroup;
 			children = (
 				6CBCCDB32A5F32F1004A984B /* LoginUseCase.swift */,
+				6C0EAEDD2A75D9AE0008AF03 /* FetchDisciplineDetailsUseCase.swift */,
+				6C0EAEDF2A75E6F90008AF03 /* FetchSemesterUseCase.swift */,
 			);
 			path = UseCase;
 			sourceTree = "<group>";
@@ -517,6 +545,7 @@
 				6CEA64B72A6373BE009F786E /* SemesterProcessor.swift */,
 				6CEA64B92A6375BD009F786E /* DisciplineProcessor.swift */,
 				6C972EF52A63859D00D681CE /* GradeProcessor.swift */,
+				6CFAB8042A75D371005B7BB5 /* LectureProcessor.swift */,
 			);
 			path = Processor;
 			sourceTree = "<group>";
@@ -637,18 +666,22 @@
 			files = (
 				6CEA64A92A633039009F786E /* MessageViewCell.swift in Sources */,
 				6CD09ADF2A65F6800043E20D /* DisciplineMeanViewCell.swift in Sources */,
+				6C0EAEE02A75E6F90008AF03 /* FetchSemesterUseCase.swift in Sources */,
 				6C4F65C22A642F76009C84CA /* ColumnFlowLayout.swift in Sources */,
 				6CACE7D42A5A0D49001117A6 /* AppDIContainer.swift in Sources */,
 				6CD09AE92A6718A20043E20D /* DisciplineSemesterViewCell.swift in Sources */,
 				6CD09AD12A64D51D0043E20D /* UITextField+Extensions.swift in Sources */,
 				6CD09AF42A681E640043E20D /* ScheduleLineLocationViewCell.swift in Sources */,
 				6CD09AE12A65F69A0043E20D /* DisciplineFinalsViewCell.swift in Sources */,
+				6CAD03472A75C21F00403716 /* DisciplineMaterialsViewController.swift in Sources */,
 				6C4F65C02A6420E8009C84CA /* Sequence+Extensions.swift in Sources */,
+				6CAD034B2A75C8B600403716 /* DisciplineMaterialViewCell.swift in Sources */,
 				6CD09AE32A65F6B00043E20D /* DisciplineGradeViewCell.swift in Sources */,
 				6CD09ADB2A65F2CD0043E20D /* DisciplineHeaderViewCell.swift in Sources */,
 				6CACE7D92A5A1174001117A6 /* WelcomeAppViewModel.swift in Sources */,
 				6CBCCDBC2A5F6AA5004A984B /* Stream+Extensions.swift in Sources */,
 				6CD09AEF2A6754D20043E20D /* NotificationManager.swift in Sources */,
+				6CAD03492A75C2D800403716 /* DisciplineMaterialsViewModel.swift in Sources */,
 				6CBCCD9A2A5E3301004A984B /* LoggingInViewController.swift in Sources */,
 				6CACE7D12A5A0C5F001117A6 /* MainCoordinator.swift in Sources */,
 				6CBCCDB92A5F3C13004A984B /* PortalAuthProgress.swift in Sources */,
@@ -664,6 +697,7 @@
 				6CBCCD852A5B5933004A984B /* AuthCoordinator.swift in Sources */,
 				6CEA64972A60B3C6009F786E /* UNESDataModel.xcdatamodeld in Sources */,
 				6CD09AF22A681E500043E20D /* ScheduleLineDayViewCell.swift in Sources */,
+				6CFAB8052A75D371005B7BB5 /* LectureProcessor.swift in Sources */,
 				6CACE7D72A5A0E47001117A6 /* WelcomeAppViewController.swift in Sources */,
 				6CD09AD52A65DDE50043E20D /* DisciplineListSupport.swift in Sources */,
 				6CEA64A12A6327BC009F786E /* ScheduleViewController.swift in Sources */,
@@ -673,6 +707,7 @@
 				6CACE7B02A59FFBC001117A6 /* AppDelegate.swift in Sources */,
 				6CD09AB82A6485B60043E20D /* DisciplineColors.swift in Sources */,
 				6C76BAC32A6C5B3E00190E78 /* DisciplineDetailsContentView.swift in Sources */,
+				6C0EAEDE2A75D9AE0008AF03 /* FetchDisciplineDetailsUseCase.swift in Sources */,
 				6CD09ABC2A6488D80043E20D /* ScheduleEmptyViewCell.swift in Sources */,
 				6CD09AD72A65E52C0043E20D /* DisciplinesViewModel.swift in Sources */,
 				6CEA64AF2A6352E3009F786E /* MessageViewLayout.swift in Sources */,
@@ -687,6 +722,7 @@
 				6C4F65BE2A641E41009C84CA /* ScheduleBlockSupport.swift in Sources */,
 				6CACE7DC2A5A3DFB001117A6 /* LoginViewController.swift in Sources */,
 				6CBCCD9C2A5E3312004A984B /* LoggingInViewModel.swift in Sources */,
+				6CFAB8032A75D192005B7BB5 /* DisciplineDetailsActionsDelegate.swift in Sources */,
 				6CD09ABA2A6488AF0043E20D /* ScheduleDayViewCell.swift in Sources */,
 				6CACE7B22A59FFBC001117A6 /* SceneDelegate.swift in Sources */,
 				6CBCCDB62A5F390C004A984B /* PortalAuthError.swift in Sources */,

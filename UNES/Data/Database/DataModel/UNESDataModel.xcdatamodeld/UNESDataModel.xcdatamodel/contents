@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="21754" systemVersion="22F82" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="21754" systemVersion="22G74" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="AccessEntity" representedClassName="AccessEntity" syncable="YES" codeGenerationType="class">
         <attribute name="password" attributeType="String"/>
         <attribute name="username" attributeType="String"/>
@@ -47,6 +47,7 @@
         <attribute name="teacherId" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <relationship name="clazz" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ClassEntity" inverseName="groups" inverseEntity="ClassEntity"/>
         <relationship name="locations" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ClassLocationEntity" inverseName="group" inverseEntity="ClassLocationEntity"/>
+        <relationship name="materials" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ClassMaterialEntity" inverseName="group" inverseEntity="ClassMaterialEntity"/>
         <uniquenessConstraints>
             <uniquenessConstraint>
                 <constraint value="classId"/>
@@ -56,6 +57,16 @@
                 <constraint value="id"/>
             </uniquenessConstraint>
         </uniquenessConstraints>
+    </entity>
+    <entity name="ClassItemEntity" representedClassName="ClassItemEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="groupId" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="materialLinks" optional="YES" attributeType="String"/>
+        <attribute name="number" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="numberOfMaterials" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="situation" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="subject" optional="YES" attributeType="String"/>
+        <relationship name="materials" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ClassMaterialEntity" inverseName="classItem" inverseEntity="ClassMaterialEntity"/>
     </entity>
     <entity name="ClassLocationEntity" representedClassName="ClassLocationEntity" syncable="YES" codeGenerationType="class">
         <attribute name="campus" optional="YES" attributeType="String"/>
@@ -76,6 +87,21 @@
                 <constraint value="day"/>
                 <constraint value="startsAt"/>
                 <constraint value="endsAt"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
+    </entity>
+    <entity name="ClassMaterialEntity" representedClassName="ClassMaterialEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="classItemId" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="groupId" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="link" attributeType="String"/>
+        <attribute name="name" attributeType="String"/>
+        <relationship name="classItem" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ClassItemEntity" inverseName="materials" inverseEntity="ClassItemEntity"/>
+        <relationship name="group" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ClassGroupEntity" inverseName="materials" inverseEntity="ClassGroupEntity"/>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="name"/>
+                <constraint value="link"/>
+                <constraint value="groupId"/>
             </uniquenessConstraint>
         </uniquenessConstraints>
     </entity>

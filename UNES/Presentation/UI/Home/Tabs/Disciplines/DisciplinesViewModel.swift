@@ -9,8 +9,16 @@ import Foundation
 import CoreData
 
 class DisciplinesViewModel {
+    private let fetchSemester: FetchSemesterUseCase
+    
+    init(fetchSemester: FetchSemesterUseCase) {
+        self.fetchSemester = fetchSemester
+    }
+    
     @Published private(set) var disciplinesMapped = [[DisciplineHelperData]]()
     private(set) var allSemesters = [SemesterEntity]()
+    
+    private var semesterTask: Task<Void, Never>? = nil
     
     func registerListener() {
         NotificationCenter.default.addObserver(
@@ -30,10 +38,16 @@ class DisciplinesViewModel {
     }
     
     func loadSemester(_ semester: SemesterEntity) {
+        semesterTask?.cancel()
         
+        semesterTask = Task {
+            await fetchSemester.execute(forSemesterId: semester.id)
+        }
     }
     
     @objc func contextObjectsDidSave(_notification: Notification) {
-        fetchData()
+        DispatchQueue.main.async { [weak self] in
+            self?.fetchData()
+        }
     }
 }

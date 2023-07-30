@@ -9,22 +9,28 @@ import Combine
 import CoreData
 
 class DisciplineDetailsViewModel {
-    private let classId: Int64
+    let classId: Int64
+    private let fetchDetails: FetchDisciplineDetailsUseCase
     
     @Published private(set) var clazz: ClassGroupEntity? = nil
     
-    init(classId: Int64) {
+    init(classId: Int64, fetchDetails: FetchDisciplineDetailsUseCase) {
         self.classId = classId
+        self.fetchDetails = fetchDetails
+    }
+    
+    func updateData() {
+        Task {
+            await fetchDetails.fetch(forGroupId: classId)
+        }
     }
     
     func setup() {
-        func registerListener() {
-            NotificationCenter.default.addObserver(
-                self,
-                selector: #selector(contextObjectsDidSave),
-                name: Notification.Name.NSManagedObjectContextDidSave,
-                object: UNESPersistenceController.shared.container.viewContext)
-        }
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(contextObjectsDidSave),
+            name: Notification.Name.NSManagedObjectContextDidSave,
+            object: UNESPersistenceController.shared.container.viewContext)
     }
     
     func fetchData() {
@@ -40,7 +46,9 @@ class DisciplineDetailsViewModel {
     }
     
     @objc func contextObjectsDidSave(_notification: Notification) {
-        fetchData()
+        DispatchQueue.main.async { [weak self] in
+            self?.fetchData()
+        }
     }
     
     func onClose() {

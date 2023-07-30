@@ -91,7 +91,7 @@ class DisciplinesViewController: UIViewController {
     
     private func navigateToClass(_ clazz: ClassEntity) {
         if let group = clazz.groups?.allObjects.first as? ClassGroupEntity {
-            let vc = DisciplineDetailsViewController(vm: DisciplineDetailsViewModel(classId: group.id))
+            let vc = DisciplineDetailsViewController(vm: DisciplineDetailsViewModel(classId: group.id, fetchDetails: FetchDisciplineDetailsUseCase()))
             navigationController?.pushViewController(vc, animated: true)
         }
     }

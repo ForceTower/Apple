@@ -28,6 +28,8 @@ class MessagesViewModel {
     }
     
     @objc func contextObjectsDidSave(_notification: Notification) {
-        loadMessages()
+        DispatchQueue.main.async { [weak self] in
+            self?.loadMessages()
+        }
     }
 }

@@ -28,6 +28,13 @@ class UNESPersistenceController {
         }
     }
     
+    func getAccess() -> AccessEntity? {
+        let context = UNESPersistenceController.shared.container.viewContext
+        let request = AccessEntity.fetchRequest()
+        request.fetchLimit = 1
+        return try? context.fetch(request).first
+    }
+    
     func saveAccess(_ username: String, _ password: String) {
         let context = UNESPersistenceController.shared.container.newBackgroundContext()
         context.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy

@@ -8,7 +8,7 @@
 import UIKit
 import Combine
 
-class DisciplineDetailsViewController: UIViewController {
+class DisciplineDetailsViewController: UIViewController, DisciplineDetailsActionsDelegate {
     private let vm: DisciplineDetailsViewModel
     private var cancellables = Set<AnyCancellable>()
     
@@ -128,11 +128,13 @@ class DisciplineDetailsViewController: UIViewController {
     private lazy var viewPager: DisciplineDetailsContentView = {
         let view = DisciplineDetailsContentView()
         view.translatesAutoresizingMaskIntoConstraints = false
+        view.delegate = self
         return view
     }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        vm.updateData()
         vm.fetchData()
         setupViews()
         setupConstraints()
@@ -170,15 +172,15 @@ class DisciplineDetailsViewController: UIViewController {
             
             nameLbl.topAnchor.constraint(equalTo: card.topAnchor, constant: 16),
             nameLbl.leadingAnchor.constraint(equalTo: card.leadingAnchor, constant: 16),
-            nameLbl.trailingAnchor.constraint(equalTo: card.trailingAnchor, constant: 16),
+            nameLbl.trailingAnchor.constraint(equalTo: card.trailingAnchor, constant: -16),
             
             departmentLbl.topAnchor.constraint(equalTo: nameLbl.bottomAnchor, constant: 4),
             departmentLbl.leadingAnchor.constraint(equalTo: card.leadingAnchor, constant: 16),
-            departmentLbl.trailingAnchor.constraint(equalTo: card.trailingAnchor, constant: 16),
+            departmentLbl.trailingAnchor.constraint(equalTo: card.trailingAnchor, constant: -16),
             
             missesLeftLbl.topAnchor.constraint(equalTo: departmentLbl.bottomAnchor, constant: 4),
             missesLeftLbl.leadingAnchor.constraint(equalTo: card.leadingAnchor, constant: 16),
-            missesLeftLbl.trailingAnchor.constraint(equalTo: card.trailingAnchor, constant: 16),
+            missesLeftLbl.trailingAnchor.constraint(equalTo: card.trailingAnchor, constant: -16),
             
             infoDiv.topAnchor.constraint(equalTo: missesLeftLbl.bottomAnchor, constant: 8),
             infoDiv.leadingAnchor.constraint(equalTo: card.leadingAnchor, constant: 80),
@@ -246,5 +248,10 @@ class DisciplineDetailsViewController: UIViewController {
     
     override func viewDidDisappear(_ animated: Bool) {
         vm.onClose()
+    }
+    
+    func onNavigateToMaterials() {
+        let vc = DisciplineMaterialsViewController(vm: DisciplineMaterialsViewModel(groupId: vm.classId))
+        navigationController?.pushViewController(vc, animated: true)
     }
 }

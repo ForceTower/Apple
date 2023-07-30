@@ -38,7 +38,9 @@ class ScheduleViewModel {
     }
     
     @objc func contextObjectsDidSave(_notification: Notification) {
-        fetchSchedule()
+        DispatchQueue.main.async { [weak self] in
+            self?.fetchSchedule()
+        }
     }
     
     private func updateData(_ locations: [ClassLocationEntity]) {
