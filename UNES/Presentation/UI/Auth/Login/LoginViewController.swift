@@ -94,6 +94,7 @@ class LoginViewController : UIViewController {
         labelInfo.translatesAutoresizingMaskIntoConstraints = false
         
         btnLogin.addTarget(self, action: #selector(onLogin), for: .touchUpInside)
+        btnAbout.addTarget(self, action: #selector(onTapAbout), for: .touchUpInside)
         inputUsername.addTarget(self, action: #selector(onNextUsername), for: .primaryActionTriggered)
         inputPassword.addTarget(self, action: #selector(onLogin), for: .primaryActionTriggered)
         
@@ -182,6 +183,12 @@ class LoginViewController : UIViewController {
     
     @objc func onNextUsername() {
         inputPassword.becomeFirstResponder()
+    }
+    
+    @objc func onTapAbout() {
+        if let url = URL(string: "https://github.com/ForceTower/Apple") {
+            UIApplication.shared.open(url)
+        }
     }
     
     @objc func keyboardWillShow(notification:NSNotification) {
