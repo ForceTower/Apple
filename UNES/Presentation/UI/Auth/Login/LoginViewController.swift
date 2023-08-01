@@ -80,11 +80,11 @@ class LoginViewController : UIViewController {
         imageLogo.clipsToBounds = true
         imageLogo.translatesAutoresizingMaskIntoConstraints = false
         
-        let btnAbout = UIButton()
-        btnAbout.configuration = .plain()
-        btnAbout.configuration?.title = "Sobre o UNES"
-        btnAbout.tintColor = .systemBlue
-        btnAbout.translatesAutoresizingMaskIntoConstraints = false
+//        let btnAbout = UIButton()
+//        btnAbout.configuration = .plain()
+//        btnAbout.configuration?.title = "Sobre o UNES"
+//        btnAbout.tintColor = .systemBlue
+//        btnAbout.translatesAutoresizingMaskIntoConstraints = false
         
         let labelInfo = UILabel()
         labelInfo.text = "Entre usando a sua conta do Portal"
@@ -94,7 +94,7 @@ class LoginViewController : UIViewController {
         labelInfo.translatesAutoresizingMaskIntoConstraints = false
         
         btnLogin.addTarget(self, action: #selector(onLogin), for: .touchUpInside)
-        btnAbout.addTarget(self, action: #selector(onTapAbout), for: .touchUpInside)
+//        btnAbout.addTarget(self, action: #selector(onTapAbout), for: .touchUpInside)
         inputUsername.addTarget(self, action: #selector(onNextUsername), for: .primaryActionTriggered)
         inputPassword.addTarget(self, action: #selector(onLogin), for: .primaryActionTriggered)
         
@@ -108,7 +108,7 @@ class LoginViewController : UIViewController {
         hairlineForm.backgroundColor = .lightGray.withAlphaComponent(0.5)
         hairlineForm.translatesAutoresizingMaskIntoConstraints = false
         
-        view.addSubview(btnAbout)
+//        view.addSubview(btnAbout)
         view.addSubview(scrollView)
         
         scrollView.addSubview(scrollViewContent)
@@ -130,9 +130,9 @@ class LoginViewController : UIViewController {
         NSLayoutConstraint.activate([
             imageLogo.heightAnchor.constraint(equalToConstant: 200),
 
-            btnAbout.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -4),
-            btnAbout.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            btnAbout.widthAnchor.constraint(equalToConstant: 180),
+//            btnAbout.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -4),
+//            btnAbout.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+//            btnAbout.widthAnchor.constraint(equalToConstant: 180),
             
             scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             scrollView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
