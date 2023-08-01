@@ -48,7 +48,7 @@ class UNESPersistenceController {
     
     @discardableResult
     func save(messages: [Message], markingNotified notified: Bool = false) -> [MessageEntity] {
-        let context = UNESPersistenceController.shared.container.viewContext
+        let context = UNESPersistenceController.shared.container.newBackgroundContext()
         context.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
         
         let current = (try? context.fetch(MessageEntity.fetchRequest())) ?? []

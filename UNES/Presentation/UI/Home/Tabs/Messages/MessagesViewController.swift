@@ -35,11 +35,15 @@ class MessagesViewControler: UIViewController {
     
     override func viewDidLoad() {
         vm.registerListener()
-        vm.loadMessages()
         setupDataSource()
         setupViews()
         setupConstraints()
         observe()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        vm.loadMessages()
     }
     
     private func observe() {

@@ -23,7 +23,7 @@ class PortalDataSync {
             
             let messages = try await arcadia.messages(forProfile: person.id).get()
             let new = UNESPersistenceController.shared.save(messages: messages.messages, markingNotified: true)
-            notifyMessages(new, context: context)
+            notifyMessages(new)
             
             let semesters = try await arcadia.semesters(forProfile: person.id).get()
             try SemesterProcessor.process(semesters: semesters, withContext: context)
@@ -56,11 +56,10 @@ class PortalDataSync {
         try? UNESPersistenceController.shared.deleteAll()
     }
     
-    private func notifyMessages(_ messages: [MessageEntity], context: NSManagedObjectContext) {
+    private func notifyMessages(_ messages: [MessageEntity]) {
         messages.forEach { message in
             NotificationManager.shared.createNotification(forMessage: message)
         }
-        try? context.save()
     }
     
     private func notifyGrades(context: NSManagedObjectContext) {
