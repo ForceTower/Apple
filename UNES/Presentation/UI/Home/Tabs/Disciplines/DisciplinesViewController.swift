@@ -107,8 +107,8 @@ class DisciplinesViewController: UIViewController {
         }
         
         let alert = UIAlertController(
-            title: "Selecione a turma",
-            message: "Qual turma deseja ver mais detalhes?",
+            title: "Selecione uma turma",
+            message: "Sobre qual turma você deseja ver mais detalhes?",
             preferredStyle: .actionSheet)
         
         groups.forEach { value in
