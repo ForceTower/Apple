@@ -90,10 +90,43 @@ class DisciplinesViewController: UIViewController {
     }
     
     private func navigateToClass(_ clazz: ClassEntity) {
-        if let group = clazz.groups?.allObjects.first as? ClassGroupEntity {
-            let vc = DisciplineDetailsViewController(vm: DisciplineDetailsViewModel(classId: group.id, fetchDetails: FetchDisciplineDetailsUseCase()))
-            navigationController?.pushViewController(vc, animated: true)
+        guard let elements = clazz.groups else {
+            return
         }
+        
+        guard let groups = elements.allObjects as? [ClassGroupEntity] else {
+            return
+        }
+        guard !groups.isEmpty else { return }
+        
+        if groups.count == 1 {
+            if let group = groups.first {
+                navigateToClassGroup(group)
+            }
+            return
+        }
+        
+        let alert = UIAlertController(
+            title: "Selecione a turma",
+            message: "Qual turma deseja ver mais detalhes?",
+            preferredStyle: .actionSheet)
+        
+        groups.forEach { value in
+            alert.addAction(.init(title: value.group, style: .default, handler: { [weak self] _ in
+                self?.navigateToClassGroup(value)
+            }))
+        }
+        
+        alert.addAction(
+            .init(title: "Cancelar", style: .cancel, handler: { _ in alert.dismiss(animated: true) })
+        )
+        
+        present(alert, animated: true)
+    }
+    
+    private func navigateToClassGroup(_ group: ClassGroupEntity) {
+        let vc = DisciplineDetailsViewController(vm: DisciplineDetailsViewModel(classId: group.id, fetchDetails: FetchDisciplineDetailsUseCase()))
+        navigationController?.pushViewController(vc, animated: true)
     }
 }
 
