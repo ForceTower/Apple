@@ -220,7 +220,7 @@ extension ScheduleViewController: UICollectionViewDelegate, UICollectionViewData
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ScheduleBlockViewCell.identifier, for: indexPath) as! ScheduleBlockViewCell
         let code = item.location.group?.clazz?.discipline?.code ?? ""
         let colorIndex = vm.disciplineColors[code] ?? 0
-        let color = DisciplineColors.colors[colorIndex]
+        let color = DisciplineColors.colors[colorIndex % DisciplineColors.colors.count]
         cell.bind(item.location, withColor: color)
         return cell
     }
