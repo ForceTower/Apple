@@ -7,7 +7,7 @@
 
 import Foundation
 import CoreData
-import FirebaseCrashlytics
+import Firebase
 import UIKit
 
 enum ScheduleSections {
@@ -16,6 +16,12 @@ enum ScheduleSections {
 }
 
 class ScheduleViewModel {
+    private let subscribeToTopics: SubscribeToTopicUseCase
+    
+    init(subscribeToTopics: SubscribeToTopicUseCase = SubscribeToTopicUseCase()) {
+        self.subscribeToTopics = subscribeToTopics
+    }
+    
     @Published private(set) var schedule = [Int16: [ProcessedClassLocation]]()
     @Published private(set) var built = [ProcessedClassLocation]()
     @Published private(set) var disciplineColors = [String: Int]()
@@ -28,6 +34,8 @@ class ScheduleViewModel {
             selector: #selector(contextObjectsDidSave),
             name: Notification.Name.NSManagedObjectContextDidSave,
             object: UNESPersistenceController.shared.container.viewContext)
+        
+        subscribeToTopics.execute(topics: ["general", "messages", "events"])
     }
     
     func fetchSchedule() {

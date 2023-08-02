@@ -7,9 +7,8 @@
 
 import UIKit
 import CoreData
-import FirebaseCore
+import Firebase
 import FirebaseAnalytics
-import FirebaseCrashlytics
 import BackgroundTasks
 
 @main
@@ -23,6 +22,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         BGTaskScheduler.shared.register(forTaskWithIdentifier: "dev.forcetower.unes.apprefresh", using: nil) { task in
             self.handleAppRefresh(task as! BGAppRefreshTask)
         }
+        
+        UNUserNotificationCenter.current().delegate = self
+        Messaging.messaging().delegate = self
+        application.registerForRemoteNotifications()
         
         return true
     }
@@ -86,3 +89,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 }
 
+extension AppDelegate: UNUserNotificationCenterDelegate, MessagingDelegate {
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        Messaging.messaging().apnsToken = deviceToken
+    }
+    
+    func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
+        if let fcmToken = fcmToken {
+            print("Received fcm token: \(fcmToken)")
+        }
+    }
+}

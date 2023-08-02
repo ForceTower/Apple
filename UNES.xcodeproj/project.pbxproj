@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		6C0EAEDE2A75D9AE0008AF03 /* FetchDisciplineDetailsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C0EAEDD2A75D9AE0008AF03 /* FetchDisciplineDetailsUseCase.swift */; };
 		6C0EAEE02A75E6F90008AF03 /* FetchSemesterUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C0EAEDF2A75E6F90008AF03 /* FetchSemesterUseCase.swift */; };
+		6C0EAEE42A7AFE7E0008AF03 /* SubscribeToTopicUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C0EAEE32A7AFE7E0008AF03 /* SubscribeToTopicUseCase.swift */; };
 		6C4058DC2A638A99004F5174 /* Grade+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C4058DB2A638A99004F5174 /* Grade+Extensions.swift */; };
 		6C4EC8E52A698C2000EF4147 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 6C4EC8E42A698C2000EF4147 /* FirebaseAnalytics */; };
 		6C4F65B82A641355009C84CA /* ScheduleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C4F65B72A641355009C84CA /* ScheduleViewModel.swift */; };
@@ -93,6 +94,7 @@
 /* Begin PBXFileReference section */
 		6C0EAEDD2A75D9AE0008AF03 /* FetchDisciplineDetailsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchDisciplineDetailsUseCase.swift; sourceTree = "<group>"; };
 		6C0EAEDF2A75E6F90008AF03 /* FetchSemesterUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchSemesterUseCase.swift; sourceTree = "<group>"; };
+		6C0EAEE32A7AFE7E0008AF03 /* SubscribeToTopicUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscribeToTopicUseCase.swift; sourceTree = "<group>"; };
 		6C13FF232A6453E200405090 /* UNES.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = UNES.entitlements; sourceTree = "<group>"; };
 		6C4058DB2A638A99004F5174 /* Grade+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Grade+Extensions.swift"; sourceTree = "<group>"; };
 		6C4F65B72A641355009C84CA /* ScheduleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleViewModel.swift; sourceTree = "<group>"; };
@@ -386,6 +388,7 @@
 				6CBCCDB32A5F32F1004A984B /* LoginUseCase.swift */,
 				6C0EAEDD2A75D9AE0008AF03 /* FetchDisciplineDetailsUseCase.swift */,
 				6C0EAEDF2A75E6F90008AF03 /* FetchSemesterUseCase.swift */,
+				6C0EAEE32A7AFE7E0008AF03 /* SubscribeToTopicUseCase.swift */,
 			);
 			path = UseCase;
 			sourceTree = "<group>";
@@ -665,6 +668,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6CEA64A92A633039009F786E /* MessageViewCell.swift in Sources */,
+				6C0EAEE42A7AFE7E0008AF03 /* SubscribeToTopicUseCase.swift in Sources */,
 				6CD09ADF2A65F6800043E20D /* DisciplineMeanViewCell.swift in Sources */,
 				6C0EAEE02A75E6F90008AF03 /* FetchSemesterUseCase.swift in Sources */,
 				6C4F65C22A642F76009C84CA /* ColumnFlowLayout.swift in Sources */,
