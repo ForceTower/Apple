@@ -7,6 +7,7 @@
 
 import CoreData
 import Arcadia
+import Firebase
 
 class UNESPersistenceController {
     static let shared = UNESPersistenceController()
@@ -48,7 +49,7 @@ class UNESPersistenceController {
     
     @discardableResult
     func save(messages: [Message], markingNotified notified: Bool = false) -> [MessageEntity] {
-        let context = UNESPersistenceController.shared.container.newBackgroundContext()
+        let context = UNESPersistenceController.shared.container.viewContext
         context.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
         
         let current = (try? context.fetch(MessageEntity.fetchRequest())) ?? []
@@ -76,6 +77,7 @@ class UNESPersistenceController {
         do {
             try context.save()
         } catch(let err) {
+            Crashlytics.crashlytics().record(error: err, userInfo: ["reason": "failed to save messages"])
             print(err.localizedDescription)
         }
         

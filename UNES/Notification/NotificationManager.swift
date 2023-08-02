@@ -31,7 +31,7 @@ class NotificationManager {
             title = sender
         }
         
-        let body = message.content ?? "Você recebeu uma mensagem, abra o aplicativo para ver!"
+        guard let body = message.content else { return }
         
         let content = UNMutableNotificationContent()
         content.title = title
