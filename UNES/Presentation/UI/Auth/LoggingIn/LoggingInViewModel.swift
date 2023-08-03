@@ -70,7 +70,7 @@ class LoggingInViewModel {
                 return
             }
         }
-        _onLoginProgress.send(completion: .failure(.otherError))
+        _onLoginProgress.send(completion: .failure(.otherError(underlyingError: error)))
     }
     
     func onLoginCompleted() {

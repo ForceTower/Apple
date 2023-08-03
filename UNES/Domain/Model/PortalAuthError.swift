@@ -7,5 +7,5 @@
 
 enum PortalAuthError : Error {
     case invalidCredentials
-    case otherError
+    case otherError(underlyingError: Error)
 }

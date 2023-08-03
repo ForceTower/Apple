@@ -46,7 +46,10 @@ class LoginUseCase {
                         continuation.yield(.fetchedGrades)
                         continuation.finish()
                     } else {
-                        continuation.finish(throwing: PortalAuthError.otherError)
+                        let error = NSError(domain: "authentication", code: 7, userInfo: [
+                            NSLocalizedDescriptionKey: "Nenhum semestre foi encontrado"
+                        ])
+                        continuation.finish(throwing: PortalAuthError.otherError(underlyingError: error))
                     }
                 } catch (let error) {
                     print("Failed with error \(error.localizedDescription)")

@@ -33,8 +33,9 @@ class AuthCoordinator : Coordinator {
         navigation?.pushViewController(vc, animated: true)
     }
     
-    func navigateToLoggingIn(username: String, password: String) {
+    func navigateToLoggingIn(username: String, password: String, delegate: LoginResultDelegate) {
         let vc = LoggingInViewController(vm: LoggingInViewModel(username: username, password: password, coordinator: self, loginUseCase: LoginUseCase()))
+        vc.loginResultDelegate = delegate
         navigation?.pushViewController(vc, animated: true)
     }
     

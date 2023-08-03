@@ -178,7 +178,7 @@ class LoginViewController : UIViewController {
         guard let password = inputPassword.text else { return }
         inputUsername.resignFirstResponder()
         inputPassword.resignFirstResponder()
-        vm.onLogin(username: username, password: password)
+        vm.onLogin(username: username, password: password, delegate: self)
     }
     
     @objc func onNextUsername() {
@@ -204,5 +204,24 @@ class LoginViewController : UIViewController {
     @objc func keyboardWillHide(notification:NSNotification) {
         let contentInset = UIEdgeInsets.zero
         scrollView.contentInset = contentInset
+    }
+}
+
+extension LoginViewController: LoginResultDelegate {
+    func didFailToLogin(withError error: PortalAuthError) {
+        var message = "Erro desconhecido ao fazer login. Me envie um email sobre isso em joaopaulo761@gmail.com"
+        switch error {
+        case .invalidCredentials:
+            message = "Usuário ou senha estão incorretos"
+        case .otherError(let underlyingError):
+            message = "Erro ao entrar. Causa \(underlyingError.localizedDescription). Me envie um email sobre isso em joaopaulo761@gmail.com"
+        }
+        
+        let alert = UIAlertController(
+            title: "Erro ao fazer login",
+            message: message,
+            preferredStyle: .alert)
+        alert.addAction(.init(title: "Ok", style: .default))
+        present(alert, animated: true)
     }
 }

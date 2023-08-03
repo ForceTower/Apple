@@ -14,7 +14,7 @@ class LoginViewModel {
         self.coordinator = coordinator
     }
     
-    func onLogin(username: String, password: String) {
-        coordinator.navigateToLoggingIn(username: username, password: password)
+    func onLogin(username: String, password: String, delegate: LoginResultDelegate) {
+        coordinator.navigateToLoggingIn(username: username, password: password, delegate: delegate)
     }
 }
