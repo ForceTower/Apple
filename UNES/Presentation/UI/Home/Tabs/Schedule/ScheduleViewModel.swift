@@ -86,6 +86,9 @@ class ScheduleViewModel {
         } catch (let error) {
             Crashlytics.crashlytics().log("Failed to refresh")
             Crashlytics.crashlytics().record(error: error)
+            DispatchQueue.main.async { [weak self] in
+                self?.refreshing = false
+            }
         }
     }
 }
