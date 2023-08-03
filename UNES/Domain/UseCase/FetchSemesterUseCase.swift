@@ -13,10 +13,12 @@ class FetchSemesterUseCase {
     func execute(forSemesterId semesterId: Int64) async {
         let context = UNESPersistenceController.shared.container.newBackgroundContext()
         context.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
-        guard
-            let access = UNESPersistenceController.shared.getAccess(),
-            let username = access.username,
-            let password = access.password else {
+        
+        let (username, password) = context.performAndWait {
+            let access = UNESPersistenceController.shared.getAccess(context: context)
+            return (access?.username, access?.password)
+        }
+        guard let username = username, let password = password else {
             print("Access not found.")
             return
         }
@@ -25,8 +27,10 @@ class FetchSemesterUseCase {
         do {
             let person = try await arcadia.login().get()
             let result = try await arcadia.grades(forProfile: person.id, atSemester: Int(semesterId)).get()
-            try DisciplineProcessor.process(disciplines: result, atSemester: semesterId, markNotified: true, withContext: context)
-            try context.save()
+            try context.performAndWait {
+                try DisciplineProcessor.process(disciplines: result, atSemester: semesterId, markNotified: true, withContext: context)
+                try context.save()
+            }
         } catch(let err) {
             print("Failed to fetch semester data. \(err.localizedDescription)")
         }

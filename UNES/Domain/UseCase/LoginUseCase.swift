@@ -36,11 +36,13 @@ class LoginUseCase {
                     if let currentSemester = semesters.max(by: { $0.id < $1.id }) {
                         print("Current semester is \(currentSemester)")
                         let grades = try await arcadia.grades(forProfile: person.id, atSemester: currentSemester.id).get()
-                        try DisciplineProcessor.process(
-                            disciplines: grades,
-                            atSemester: Int64(currentSemester.id),
-                            markNotified: true,
-                            withContext: context)
+                        try context.performAndWait {
+                            try DisciplineProcessor.process(
+                                disciplines: grades,
+                                atSemester: Int64(currentSemester.id),
+                                markNotified: true,
+                                withContext: context)
+                        }
                         
                         UNESPersistenceController.shared.saveAccess(username, password)
                         continuation.yield(.fetchedGrades)

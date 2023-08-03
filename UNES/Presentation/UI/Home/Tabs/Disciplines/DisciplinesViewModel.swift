@@ -39,9 +39,9 @@ class DisciplinesViewModel {
     
     func loadSemester(_ semester: SemesterEntity) {
         semesterTask?.cancel()
-        
+        let id = semester.id
         semesterTask = Task {
-            await fetchSemester.execute(forSemesterId: semester.id)
+            await fetchSemester.execute(forSemesterId: id)
             DispatchQueue.main.async { [weak self] in
                 self?.fetchData()
             }

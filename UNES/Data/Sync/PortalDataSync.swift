@@ -30,12 +30,15 @@ class PortalDataSync {
             
             if let currentSemester = semesters.max(by: { $0.id < $1.id }) {
                 let grades = try await arcadia.grades(forProfile: person.id, atSemester: currentSemester.id).get()
-                try DisciplineProcessor.process(
-                    disciplines: grades,
-                    atSemester: Int64(currentSemester.id),
-                    markNotified: false,
-                    withContext: context)
-                notifyGrades(context: context)
+                try context.performAndWait {
+                    try DisciplineProcessor.process(
+                        disciplines: grades,
+                        atSemester: Int64(currentSemester.id),
+                        markNotified: false,
+                        withContext: context)
+                    
+                    notifyGrades(context: context)
+                }
             }
             return true
         } catch (let error) {
