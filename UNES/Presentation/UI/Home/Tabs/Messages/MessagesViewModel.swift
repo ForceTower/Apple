@@ -7,9 +7,11 @@
 
 import Combine
 import Foundation
+import Firebase
 
 class MessagesViewModel {
     @Published private(set) var messages: [MessageEntity] = []
+    @Published private(set) var refreshing = false
     
     func registerListener() {
         NotificationCenter.default.addObserver(
@@ -30,6 +32,31 @@ class MessagesViewModel {
     @objc func contextObjectsDidSave(_notification: Notification) {
         DispatchQueue.main.async { [weak self] in
             self?.loadMessages()
+        }
+    }
+    
+    func refreshData() {
+        if refreshing { return }
+        do {
+            let context = UNESPersistenceController.shared.container.viewContext
+            let access = try context.fetch(AccessEntity.fetchRequest()).first
+            guard let access = access,
+                  let username = access.username,
+                  let password = access.password else {
+                return
+            }
+            refreshing = true
+            Task {
+                let result = await PortalDataSync().update(username: username, password: password)
+                print("Finished executing \(result)")
+                DispatchQueue.main.async { [weak self] in
+                    self?.refreshing = false
+                    self?.loadMessages()
+                }
+            }
+        } catch (let error) {
+            Crashlytics.crashlytics().log("Failed to refresh")
+            Crashlytics.crashlytics().record(error: error)
         }
     }
 }

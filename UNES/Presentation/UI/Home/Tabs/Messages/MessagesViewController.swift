@@ -24,6 +24,11 @@ class MessagesViewControler: UIViewController {
         return view
     }()
     
+    private lazy var refreshControl: UIRefreshControl = {
+        let control = UIRefreshControl()
+        return control
+    }()
+    
     init(vm: MessagesViewModel) {
         self.vm = vm
         super.init(nibName: nil, bundle: nil)
@@ -53,12 +58,25 @@ class MessagesViewControler: UIViewController {
                 self?.reloadMessages(messages)
             }
             .store(in: &cancellables)
+        
+        vm.$refreshing
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] value in
+                if value {
+                    self?.refreshControl.beginRefreshing()
+                } else {
+                    self?.refreshControl.endRefreshing()
+                }
+            }
+            .store(in: &cancellables)
     }
     
     private func setupViews() {
         view.backgroundColor = .systemBackground
         title = "Mensagens"
         navigationController?.navigationBar.prefersLargeTitles = true
+        collection.refreshControl = refreshControl
+        refreshControl.addTarget(self, action: #selector(startRefresh), for: .valueChanged)
         view.addSubview(collection)
     }
     
@@ -93,6 +111,10 @@ class MessagesViewControler: UIViewController {
         snapshot.appendSections([.portal])
         snapshot.appendItems(messages, toSection: .portal)
         dataSource.apply(snapshot, animatingDifferences: true)
+    }
+    
+    @objc func startRefresh() {
+        vm.refreshData()
     }
 }
 
