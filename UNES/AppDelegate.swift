@@ -58,28 +58,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     private func handleAppRefresh(_ task: BGAppRefreshTask) {
         Analytics.logEvent("app_background_fetch", parameters: nil)
         var fetchTask: Task<Void, Never>? = nil
-        do {
-            let context = UNESPersistenceController.shared.container.newBackgroundContext()
-            let access = try context.fetch(AccessEntity.fetchRequest()).first
-            guard let access = access,
-                  let username = access.username,
-                  let password = access.password else {
-                Analytics.logEvent("app_background_fetch_complete", parameters: nil)
-                return
-            }
-            
-            scheduleAppRefresh()
-            fetchTask = Task {
-                UserDefaults.standard.set(Date(), forKey: "last_sync")
-                let result = await PortalDataSync().update(username: username, password: password)
-                Analytics.logEvent("app_background_fetch_complete", parameters: nil)
-                task.setTaskCompleted(success: result)
-            }
-        } catch (let error) {
-            Analytics.logEvent("app_background_fetch_failed", parameters: nil)
-            Crashlytics.crashlytics().log("Failed to run app refresh")
-            Crashlytics.crashlytics().record(error: error)
-            scheduleAppRefresh()
+        
+        let context = UNESPersistenceController.shared.container.newBackgroundContext()
+        let (username, password) = context.performAndWait {
+            let access = try? context.fetch(AccessEntity.fetchRequest()).first
+            return (access?.username, access?.password)
+        }
+        guard let username = username, let password = password else {
+            Analytics.logEvent("app_background_fetch_complete", parameters: nil)
+            return
+        }
+        
+        scheduleAppRefresh()
+        fetchTask = Task {
+            UserDefaults.standard.set(Date(), forKey: "last_sync")
+            let result = await PortalDataSync().update(username: username, password: password)
+            Analytics.logEvent("app_background_fetch_complete", parameters: nil)
+            task.setTaskCompleted(success: result)
         }
         
         task.expirationHandler = {
