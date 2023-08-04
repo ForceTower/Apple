@@ -194,6 +194,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6C23F17F2A7DAB7700745F71 /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				6CBCCDB52A5F390C004A984B /* PortalAuthError.swift */,
+				6CBCCDB82A5F3C13004A984B /* PortalAuthProgress.swift */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
+		6C23F1802A7DAB8200745F71 /* Database */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Database;
+			sourceTree = "<group>";
+		};
 		6C4F65B92A641430009C84CA /* Blocks */ = {
 			isa = PBXGroup;
 			children = (
@@ -399,8 +415,8 @@
 		6CBCCDB72A5F3C06004A984B /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				6CBCCDB52A5F390C004A984B /* PortalAuthError.swift */,
-				6CBCCDB82A5F3C13004A984B /* PortalAuthProgress.swift */,
+				6C23F1802A7DAB8200745F71 /* Database */,
+				6C23F17F2A7DAB7700745F71 /* Auth */,
 			);
 			path = Model;
 			sourceTree = "<group>";

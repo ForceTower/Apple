@@ -22,13 +22,19 @@ class LoginUseCase {
                     let person = try await arcadia.login().get()
                     continuation.yield(.fetchedUser(person: person))
                     
+                    let context = UNESPersistenceController.shared.container.newBackgroundContext()
+                    context.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
+                    
                     let messages = try await arcadia.messages(forProfile: person.id).get()
-                    UNESPersistenceController.shared.save(messages: messages.messages, markingNotified: true)
+                    let _ = context.performAndWait {
+                        UNESPersistenceController.shared.save(
+                            messages: messages.messages,
+                            markingNotified: true,
+                            withContext: context)
+                    }
                     continuation.yield(.fetchedMessages)
                     
                     let semesters = try await arcadia.semesters(forProfile: person.id).get()
-                    let context = UNESPersistenceController.shared.container.newBackgroundContext()
-                    context.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
                     try SemesterProcessor.process(semesters: semesters, withContext: context)
                     
                     continuation.yield(.fetchedSemesterInfo)
