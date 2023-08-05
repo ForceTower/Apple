@@ -93,17 +93,17 @@ class UNESPersistenceController {
     func deleteAll() throws {
         let context = container.newBackgroundContext()
         context.performAndWait {
-            let _ = try context.execute(NSBatchDeleteRequest(fetchRequest: AccessEntity.fetchRequest()))
-            let _ = try context.execute(NSBatchDeleteRequest(fetchRequest: ClassEntity.fetchRequest()))
-            let _ = try context.execute(NSBatchDeleteRequest(fetchRequest: ClassGroupEntity.fetchRequest()))
-            let _ = try context.execute(NSBatchDeleteRequest(fetchRequest: ClassLocationEntity.fetchRequest()))
-            let _ = try context.execute(NSBatchDeleteRequest(fetchRequest: CourseEntity.fetchRequest()))
-            let _ = try context.execute(NSBatchDeleteRequest(fetchRequest: DisciplineEntity.fetchRequest()))
-            let _ = try context.execute(NSBatchDeleteRequest(fetchRequest: GradeEntity.fetchRequest()))
-            let _ = try context.execute(NSBatchDeleteRequest(fetchRequest: MessageEntity.fetchRequest()))
-            let _ = try context.execute(NSBatchDeleteRequest(fetchRequest: ProfileEntity.fetchRequest()))
-            let _ = try context.execute(NSBatchDeleteRequest(fetchRequest: SemesterEntity.fetchRequest()))
-            let _ = try context.execute(NSBatchDeleteRequest(fetchRequest: TeacherEntity.fetchRequest()))
+            let _ = try? context.execute(NSBatchDeleteRequest(fetchRequest: AccessEntity.fetchRequest()))
+            let _ = try? context.execute(NSBatchDeleteRequest(fetchRequest: ClassEntity.fetchRequest()))
+            let _ = try? context.execute(NSBatchDeleteRequest(fetchRequest: ClassGroupEntity.fetchRequest()))
+            let _ = try? context.execute(NSBatchDeleteRequest(fetchRequest: ClassLocationEntity.fetchRequest()))
+            let _ = try? context.execute(NSBatchDeleteRequest(fetchRequest: CourseEntity.fetchRequest()))
+            let _ = try? context.execute(NSBatchDeleteRequest(fetchRequest: DisciplineEntity.fetchRequest()))
+            let _ = try? context.execute(NSBatchDeleteRequest(fetchRequest: GradeEntity.fetchRequest()))
+            let _ = try? context.execute(NSBatchDeleteRequest(fetchRequest: MessageEntity.fetchRequest()))
+            let _ = try? context.execute(NSBatchDeleteRequest(fetchRequest: ProfileEntity.fetchRequest()))
+            let _ = try? context.execute(NSBatchDeleteRequest(fetchRequest: SemesterEntity.fetchRequest()))
+            let _ = try? context.execute(NSBatchDeleteRequest(fetchRequest: TeacherEntity.fetchRequest()))
         }
     }
 }
