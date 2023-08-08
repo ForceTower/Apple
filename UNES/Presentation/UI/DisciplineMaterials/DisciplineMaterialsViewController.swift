@@ -130,7 +130,8 @@ extension DisciplineMaterialsViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let item = vm.materials[indexPath.row]
         if let link = item.link,
-           let url = URL(string: link) {
+           let encoded = link.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
+           let url = URL(string: encoded) {
             if UIApplication.shared.canOpenURL(url) {
                 UIApplication.shared.open(url)
                 return
