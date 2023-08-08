@@ -13,6 +13,8 @@ import FirebaseCrashlytics
 class LoginUseCase {
     func execute(username: String, password: String) -> AsyncThrowingStream<PortalAuthProgress, Error> {
         let arcadia = Arcadia(username: username, password: password)
+        
+        Crashlytics.crashlytics().setUserID(username)
 
         return AsyncThrowingStream<PortalAuthProgress, Error> { continuation in
             Task {
@@ -63,6 +65,7 @@ class LoginUseCase {
                     print("Failed with error \(error.localizedDescription)")
                     print(error)
                     Crashlytics.crashlytics().log("Failed to run login")
+                    Crashlytics.crashlytics().log(String(describing: error))
                     Crashlytics.crashlytics().record(error: error)
                     continuation.finish(throwing: error)
                 }

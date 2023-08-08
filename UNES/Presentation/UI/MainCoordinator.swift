@@ -7,6 +7,7 @@
 
 import UIKit
 import CoreData
+import FirebaseCrashlytics
 
 class MainCoordinator : Coordinator {
     private let container: AppDIContainer
@@ -26,6 +27,7 @@ class MainCoordinator : Coordinator {
             AuthCoordinator(container: container, window: window, coordinator: self).start()
         } else {
             print("Already connected. Moving home")
+            Crashlytics.crashlytics().setUserID(item?.username ?? "..invalid..")
             HomeCoordinator(container: container, window: window, coordinator: self).start()
         }
     }
