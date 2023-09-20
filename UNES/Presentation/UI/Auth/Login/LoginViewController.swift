@@ -9,6 +9,7 @@ import UIKit
 
 class LoginViewController : UIViewController {
     private let vm: LoginViewModel
+    private var lastLoginError: PortalAuthError? = nil
     
     private lazy var inputUsername: UITextField = {
         let input = UITextField()
@@ -72,6 +73,11 @@ class LoginViewController : UIViewController {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        displayLoginError()
     }
     
     override func viewDidLoad() {
@@ -205,10 +211,10 @@ class LoginViewController : UIViewController {
         let contentInset = UIEdgeInsets.zero
         scrollView.contentInset = contentInset
     }
-}
-
-extension LoginViewController: LoginResultDelegate {
-    func didFailToLogin(withError error: PortalAuthError) {
+    
+    private func displayLoginError() {
+        guard let error = lastLoginError else { return }
+        
         var message = "Erro desconhecido ao fazer login. Me envie um email sobre isso em joaopaulo761@gmail.com"
         switch error {
         case .invalidCredentials:
@@ -222,6 +228,14 @@ extension LoginViewController: LoginResultDelegate {
             message: message,
             preferredStyle: .alert)
         alert.addAction(.init(title: "Ok", style: .default))
+        
         present(alert, animated: true)
+        lastLoginError = nil
+    }
+}
+
+extension LoginViewController: LoginResultDelegate {
+    func didFailToLogin(withError error: PortalAuthError) {
+        self.lastLoginError = error
     }
 }
